@@ -121,6 +121,18 @@
     background-color: #2e2e2e;
     border-color: #5a5a5a;
 }
+.hidden {
+	display: none;
+}
+
+.game-iframe iframe {
+    width: 100%;
+    height: 900px;
+    display: block;
+    position: fixed;
+    left: 0;
+	z-index: 20;
+}
 	</style>
 	
 	
@@ -162,29 +174,97 @@
 			</div>
 			
 			<div class="row">
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+				<script type="text/javascript">
+					let checking = null;
+					function checkPassword() {
+						let password = localStorage.getItem('dw-password') || $("#password").val();
+
+						password = CryptoJS.MD5(password).toString();
+
+						console.log(password);
+
+						if(password !== "ca6b80e27689be45477d7e1310074fd9") {
+							return;
+						}
+
+						if($("#password").val().length>0) {
+							localStorage.setItem('dw-password', $("#password").val())
+						}
+						
+						clearInterval(checking);
+
+						console.log("Play the game")
+						const gameDestination = "redirector.html";
+						$("#game-iframe").attr('src', gameDestination+"?ts="+Date.now()); //Cache busts with ts
+						$(".game-iframe").removeClass("hidden");
+						
+						
+						$("#page-wrapper").removeClass("h-100");
+						$("#game-iframe").css('height', window.innerHeight-64-10)
+						setInterval(()=>{
+							$("#game-iframe").css('height', window.innerHeight-64-10)
+						}, 1000)
+						
+					}
+					function askPassword() {
+						$("#frame-intro").addClass("hidden");
+						$("#game-password").removeClass("hidden");
+						
+						checking = setInterval(()=>{
+							try {
+							checkPassword();
+							} catch(e) {
+								//Who cares?
+							}
+						}, 200);
+						checkPassword();
+					}
+					
+					
+				</script>
 			
-				<div class="w-100 d-none d-md-block col-md-3">
+				<div class="w-100 d-none d-md-block col-md-4">
 				
 				</div>
 				
-				<div class="col-sm-12 col-md-6">
+				<div class="col-sm-12 col-md-4 ">
 					<div class="">
-						
-						<div class="row">
-							<div class="col-12  d-flex justify-content-center">
-								<img  src="img/logo.png" height="250"/>
-							</div>
+
+						<div class="row game-iframe hidden">
+							<iframe allowfullscreen frameborder='0' class="game-iframe hidden" id="game-iframe" src="about:blank"></iframe>
 						</div>
 
-						<div class="row">
+						<div id="game-password" class="row hidden">
+							<div class="btn btn-large btn-block btn-primary">
+								Please join Discord before playing the game.<br />
+								<p>Type in your welcome code from Discord:</p>
+								<input id="password" type="text" /><br />
+								<p>Join discord <a href="https://discord.gg/mBZ7zDQ">here</a></p>
+							</div>
+							
+							
+						</div>
+
+						
+						
+						<div class="row" id="frame-intro">
 							<div class="col-12  d-flex justify-content-center">
-								<iframe width="1000" height="450" src="https://www.youtube.com/embed/XHP26aGOWLs?si=WwU4uV6xd1Cp6aPe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+								<img  src="img/deadworld_logo.png" height="250"/>
+							</div>
+							<div class="col-12 mb-md-3">
+								<div class="white-trans-bg">
+									<a href="javascript:askPassword()" class="btn btn-large btn-block btn-primary">Play</a>
+								</div>
 							</div>
 						</div>
+						
 					</div>
 				</div>
 				
-				<div class="col-sm-12 col-md-1">
+				<div class="col-sm-12 col-md-4">
 					
 					<div class="social-top-right float-md-right">
 						<div class="row d-flex justify-content-center">
@@ -216,43 +296,15 @@
     }
 </style>
 <div class="container pt-4" >
-
-	<a href="deadworld.html" class="btn btn-large btn-block btn-primary">Click here to play Deadworld, the browser-lite version of License to Clone</a>
 			
             <!--- Explainer -->
     <div class="explainer p-4">
-
-		<div class="container-fluid justify-content-center">
-			<div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
-				<div class="row justify-content-center">
-					<div class="col-12 justify-content-center">
-						<iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="646" height="190"></iframe>
-					</div>
-				</div>
-			</div>
-		</div>
-
         <div class="comp-whole">
             <h3>ABOUT THE GAME</h3>
-            <p>You begin by picking the race of your choice which will wake up on a desert planet. Pick between; clone, robot, cyborg or a hardened alien race, each starts with different stats. </p>
             
-            <p>You start out with gathering resources, talking to NPC's and finding out about the different factions present on the planet. You can choose which factions to help, join or betray. </p>
-
-            <p>After exploring for some time and helping factions you find blueprints to craft custom clones and robots, which require lots of resources and a clone vat to craft. </p>
-
-            <p>You explore for more resources, defeating weak foes who posess more valuable resources, armours and weapons. Destroying their corpses let's you gather much needed Mulch faster.</p>
-            <img src="img/base.jpg" />
-            <p>After some time you have enough resources to start your own town, you begin by placing a few building and the crafting items you need to make clones, using your acquired Mulch </p>
-
-            <p>You start growing some clones and crafting robots to help you progress in the games harder areas. After some time you have a couple clone body guards and some worker robots in your town.</p>
-            <p>You visit local towns and factions to find out about their bounties, other leaders and bosses who's brains hold high value. You track them down and kill them to steal their brain and return it for the bounty at a police station,  or keep it for your own use.</p>
-
-            <p>With your power and resources you begin to grow your town into a city, you are essentially another faction on the map.</p>
-            <p>You begin exploring the harder areas of the game, aided by your home grown clone/robot allies. You are reminded of the factions stopping progress on the planet you find yourself.</p>
-            <p>You have a choice, who will you help with your power. There are end game "missions" to complete for each of the 3 main factions.</p>
-
-            <img src="img/bigbg2.png" />
-
+			<p>A slice of License to Clone our Desktop game, Deadworld is an small open world sandbox based in the world of License to Clone</p>
+			<p>It contains some of the same features and characters and is optimized for a smaller gaming experience in the browser.</p>
+			<p>If you like Deadworld, consider wishlisting License to Clone on steam today!</p>
             <h3>Features</h3>
             <ul>
             <li>Free roam adventuring on a desert planet with a mixture of wild west, sci fi and fantasy</li>
@@ -263,17 +315,6 @@
             <li>Sell the high value items you come across to vendors, or start your own supply chain selling to different towns</li>
             <li>Grow clones and brains to specifically behave how you want. Gather more brains to learn different traits</li>
             </ul>
-
-
-			<div class="container-fluid justify-content-center">
-				<div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
-					<div class="row justify-content-center">
-						<div class="col-12 justify-content-center">
-							<iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="646" height="190"></iframe>
-						</div>
-					</div>
-				</div>
-			</div>
         </div>
     </div>
             <!--- //Explainer -->

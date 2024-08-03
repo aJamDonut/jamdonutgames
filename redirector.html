@@ -1,0 +1,50 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Redirection to game...</title>
+	<style>
+		body {
+			font-family: 'Courier New', Courier, monospace;
+		background-color: rgb(65, 65, 65);
+		}
+		* {
+			color: rgb(211, 211, 211);
+		}
+	</style>
+	
+	
+  </head>
+  <body>
+	<h1>Loading... <a id="replace" href="https://ajamdonut.github.io/deadworld/0.9.0.2/deaddesert.html?localStorage=true&noAudio=false&test=true&type=component&unit=frontMenu&x=9&y=13&tt=y&map=live&deadworld=true">Click Here if it takes too long</a></h1>
+
+	<script type="text/javascript">
+		(function retryRedirect() {
+			const replace = document.getElementById("replace");
+			
+			const latestVersion = "0.9.0.2";
+
+			const goto = `https://ajamdonut.github.io/deadworld/${latestVersion}/deaddesert.html?localStorage=true&noAudio=false&test=true&type=component&unit=frontMenu&x=9&y=13&tt=y&map=live&deadworld=true`; //Latest version
+
+			replace.setAttribute("href", goto);
+
+			const maxRetries = 10; // Maximum number of retries
+			let retryCount = 0;
+			const retryDelay = 1000; // Delay in milliseconds
+
+			function attemptRedirect() {
+				if (retryCount < maxRetries) {
+					window.location.href = goto
+					retryCount++;
+					setTimeout(attemptRedirect, retryDelay);
+				}
+			}
+
+			attemptRedirect();
+		})();
+	</script>
+	
+  </body>
+</html>
