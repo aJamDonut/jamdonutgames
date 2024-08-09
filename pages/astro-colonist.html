@@ -1,0 +1,90 @@
+<style type="text/css">
+  .split-row {
+    border: 1px solid #2f2f2f;
+    padding: 10px;
+    background-color: rgb(61 61 61);
+    margin-bottom: 10px;
+}
+</style>
+
+<div class="row split-row" id="explains-game">
+  <div class="col-12">
+    <h1>Astro Colonist</h1>
+
+    <p>Take over the solar system</p>
+    <p>Take over a randomly generated solar system and see if you can survive.</p>
+    <p>Research new technology, launch satellites and build space defences.</p>
+    <h4>Features</h4>
+    <br />
+    <ul>
+      <li>Colonize planets</li>
+      <li>Build research stations to progress knowledge</li>
+      <li>Build mining vessels to gather resources</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row split-row">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+  <script type="text/javascript">
+    let checking = null;
+    function checkPassword() {
+      console.log("Play the game");
+      const gameDestination = "https://ajamdonut.github.io/AstroColonist/index.html";
+      $("#game-iframe").attr("src", gameDestination + "?ts=" + Date.now()); //Cache busts with ts
+      $(".game-iframe").removeClass("hidden");
+      $(".game-iframe").css("display", "block");
+
+      $("#page-wrapper").removeClass("h-100");
+      $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      setInterval(() => {
+        $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      }, 1000);
+      $("#frame-intro").hide();
+      $("#explains-game").hide();
+    }
+  </script>
+
+  <div class="col-12">
+    <div class="">
+      <div class="game-iframe hidden" style="display: none">
+        <iframe
+          style="width: 100%"
+          allowfullscreen
+          frameborder="0"
+          class="game-iframe hidden"
+          id="game-iframe"
+          src="about:blank"
+        ></iframe>
+      </div>
+
+      <div class="row justify-content-center" id="frame-intro">
+        <div class="">
+          <img src="img/astrologo.png" height="250" />
+        </div>
+        <div class="col-12">
+          <div class="white-trans-bg">
+            <a
+              href="javascript:checkPassword()"
+              class="btn btn-large btn-block btn-primary"
+              >Play</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="row split-row" id="explains-help">
+  <div class="col-12">
+    <h1>Player Guide</h1>
+
+    <h4>Starting out</h4>
+    <p>Wip...</p>
+  </div>
+</div>
+-->

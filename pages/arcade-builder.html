@@ -1,0 +1,91 @@
+<style type="text/css">
+  .split-row {
+    border: 1px solid #2f2f2f;
+    padding: 10px;
+    background-color: rgb(61 61 61);
+    margin-bottom: 10px;
+}
+</style>
+
+<div class="row split-row" id="explains-game">
+  <div class="col-12">
+    <h1>Arcade Builder</h1>
+
+    <p>Create and operate your very own games arcade!</p>
+    <p>Can you survive a harsh desert? Have you really got what it takes to become a powerful hunter?</p>
+    <p>Take on the harsh world in deadworld, pit yourself againt wild animals, killer robots and the local vagrants.</p>
+    <h4>Features</h4>
+    <br />
+    <ul>
+      <li>Place classic pinball and arcade machines</li>
+      <li>Research and place hundreds of objects</li>
+      <li>Hire and fire staff as you see fit</li>
+      <li>Host parties for guests</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row split-row">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+  <script type="text/javascript">
+    let checking = null;
+    function checkPassword() {
+      console.log("Play the game");
+      const gameDestination = "https://ajamdonut.github.io/ArcadeBuilder/index.html";
+      $("#game-iframe").attr("src", gameDestination + "?ts=" + Date.now()); //Cache busts with ts
+      $(".game-iframe").removeClass("hidden");
+      $(".game-iframe").css("display", "block");
+
+      $("#page-wrapper").removeClass("h-100");
+      $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      setInterval(() => {
+        $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      }, 1000);
+      $("#frame-intro").hide();
+      $("#explains-game").hide();
+    }
+  </script>
+
+  <div class="col-12">
+    <div class="">
+      <div class="game-iframe hidden" style="display: none">
+        <iframe
+          style="width: 100%"
+          allowfullscreen
+          frameborder="0"
+          class="game-iframe hidden"
+          id="game-iframe"
+          src="about:blank"
+        ></iframe>
+      </div>
+
+      <div class="row justify-content-center" id="frame-intro">
+        <div class="">
+          <img src="img/ablogotrans.png" height="250" />
+        </div>
+        <div class="col-12">
+          <div class="white-trans-bg">
+            <a
+              href="javascript:checkPassword()"
+              class="btn btn-large btn-block btn-primary"
+              >Play</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<div class="row split-row" id="explains-help">
+  <div class="col-12">
+    <h1>Player Guide</h1>
+
+    <h4>Starting out</h4>
+    <p>Wip...</p>
+  </div>
+</div>
+-->

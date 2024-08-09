@@ -1,346 +1,718 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-	<!-- Start cookieyes banner --> <script id="cookieyes" type="text/javascript" src="https://cdn-cookieyes.com/client_data/51743891c4f151536b6895a7/script.js"></script> <!-- End cookieyes banner -->
+    <!-- Start cookieyes banner -->
+    <script
+      id="cookieyes"
+      type="text/javascript"
+      src="https://cdn-cookieyes.com/client_data/51743891c4f151536b6895a7/script.js"
+    ></script>
+    <!-- End cookieyes banner -->
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Grey+Qo&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Grey+Qo&family=Holtwood+One+SC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css?family=Sigmar+One|Titillium+Web&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Sigmar+One|Titillium+Web&display=swap"
+      rel="stylesheet"
+    />
     <title>Jam Donut Games - About Us</title>
-	
-	<style type="text/css">
-	
-	html, body {
-	  height: 100%;
-	  background-color: #313131;
-	}
 
-	h1,h2,h3 {
-		font-family: 'Sigmar One', cursive;
-		color: #b6b6b6;
-		margin: 0;
-		line-height: 1;
-		margin-top: 15px;
-	}
-	
-	  p, li {
-		font-family: 'Titillium Web', sans-serif;
-		font-weight: bold;
-		font-size: 15px;
-		color: #a4a4a4;
-	}
-	
-	.explainer img{
-		-webkit-filter: opacity(60%)
-	}
-	
-	#page-wrapper {
-		z-index: 1;
-		
-	}
-	
-	div {
-		
-	}
-	
-	
-	#header-bg {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		z-index: 0;
-		background: url(img/bigbg2.png);
-		background-position: center;
-		filter: opacity(30%);
-		-webkit-filter: opacity(30%);
-		height: 100%;
-	}
+    <style type="text/css">
+      #sliderSection {
+        display: none;
+        position: fixed;
+        padding-bottom: 100px;
+        top: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: #000e06
+      }
+      .btn-primary:hover {
+          color: #fff;
+          background-color: #3b6f0c;
+          border-color: #07650e;
+          box-shadow: 0 0 6px 6px rgb(27 181 27 / 85%);
+      }
+      .btn-primary {
+          color: #fff;
+          background-color: #3b6f0c !important;
+          border-color: #07650e  !important;
+      }
+      .carousel-inner {
+        background-color: black;
+        background: url("img/scuff.png");
+      }
+      .carousel-inner p, .carousel-inner li{
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
+      }
+      .btn {
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
+      
+      }
+      .carousel-item p {
+        color: rgb(175, 175, 175);
+      }
+      html,
+      body {
+        height: 100%;
+        background-color: #313131;
+      }
+      .holtwood-one-sc-regular {
+        font-family: "Holtwood One SC", serif;
+        font-weight: 300;
+        font-style: normal;
+      }
 
-	
-	#content-wrapper, #page-footer {
-		background-color: #313131;
-		height: 100%;
-		z-index: 1;
-		
-	}
-	
-	.social-top-right {
-		background-color: #5d5d5d7a;
-		padding: 10px;
-		margin-top: 10px;
-		margin-bottom: 10px;
-	}
-	
-	@media (min-width: 576px) {  }
+      h1,
+      h2,
+      h3 {
+        font-family: "Holtwood One SC", serif;
+        color: #b6b6b6;
+        margin: 0;
+        line-height: 1;
+        margin-top: 15px;
+        font-style: normal;
+        font-weight: 100;
+      }
+      h4 {
+        font-family: "Holtwood One SC", serif;
+        color: #7a7a7a;
+        margin: 0;
+        line-height: 1;
+        margin-top: 15px;
+        font-style: normal;
+        font-weight: 100;
+      }
+      #content-wrapper p,
+      #content-wrapper li {
+        font-family: "Titillium Web", sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+        color: #a4a4a4;
+      }
+      .explainer img {
+        -webkit-filter: opacity(60%);
+      }
+      .explainer {
+        background: url("img/scuff.png");
+        background-repeat:repeat;
+        background-position: bottom;
+        background-size: 100%;
+        background-blend-mode: exclusion;
+      }
+      #top-header {
+        background: url("img/scuff.png");
+        background-repeat:repeat;
+        background-position: top;
+        background-size: 100%;
+        background-color: rgb(86, 86, 86);
+        background-blend-mode:difference
+      }
+      footer {
+        background: url("img/scuff.png");
+        background-repeat:repeat;
+        background-position: top;
+        background-size: 100%;
+        background-color: rgb(86, 86, 86);
+        opacity: 50%;
+      }
+      #page-wrapper {
+        z-index: 1;
+      }
+      #header-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 0;
+        background: url(img/bigger.png);
+        background-position: top;
+        background-size: 40%;
+        filter: opacity(30%);
+        -webkit-filter: opacity(30%);
+        
+      }
+      #content-wrapper,
+      #page-footer {
+        background-color: #3131319e;
 
+        
+        z-index: 1;
+      }
+      .social-top-right {
+        background-color: #5d5d5d7a;
+        padding: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .white-trans-bg {
+        width: 100%;
+        background-color: #ffffff7a;
+        padding: 10px;
+      }
+      .explainer {
+        background-color: #3f3f3f;
+      }
+      .btn-primary {
+        color: #fff;
+        background-color: #2e2e2e;
+        border-color: #5a5a5a;
+      }
+      footer {
+        background-color: #4b4b4b;
+        color: #b6b6b6;
+        padding: 10px 0;
+        z-index: 1;
+      }
+      footer a {
+        color: #b6b6b6;
+      }
+      .explainer img {
+        width: 100%;
+      }
+      .container {
+        width: 100%;
+      }
 
-	@media (min-width: 768px) {
-	
-	.social-top-right {
-		width: 200px;
-	}
-	
-	
-	}
-
-
-	@media (min-width: 992px) {  }
-
-
-	@media (min-width: 1200px) {  }
-		
-	#top-header {
-		background-color: #4b4b4b7a;
-	}
-	
-	.top-right-menu .btn {
-		margin-right: 10px;
-	}
-	
-	.col-xs-6 {
-		width: 50% !important;
-	}
-	
-	.white-trans-bg {
-		width: 100%;
-		background-color: #ffffff7a;
-		padding: 10px;
-	}
-	
-	.explainer {
-		background-color: #3f3f3f; 
-	}
-	
-	
-	.btn-primary {
-    color: #fff;
-    background-color: #2e2e2e;
-    border-color: #5a5a5a;
+      .nav-item {
+        margin-right: 5px; /* Adjust the value as needed */
+      }
+      #navigation {
+        z-index: 100;
+        position: fixed;
+      }
+      #carouselExampleIndicators {
+        top: 50px;
+      }
+      #toggleSliderBtn2 {
+        z-index: 100;
+        background: url(img/tv1.png);
+        width: 164px;
+        height: 85px;
+        border: none;
+        background-position: bottom;
+        font-family: monospace;
+        background-color: #117011;
+        box-shadow: 0 0 37px 12px rgb(27 181 27 / 85%);
+      }
+      #toggleSliderBtn {
+        background: url(img/tv2.png);
+        width: 164px;
+        height: 85px;
+        border: none;
+        background-position: bottom;
+        font-family: monospace;
+      }
+      .black-and-white-picture-regular {
+        font-family: "Black And White Picture", system-ui;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 50px;
+      }
+      @media (max-width: 767px) {
+    img.d-block {
+        margin: auto;
+        float: none !important;
+    }
 }
-	</style>
-	
-	<!-- Reddit Pixel -->
-<script>
-	!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','t2_k9633');rdt('track', 'PageVisit');
-	</script>
-	<!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
-	<!-- End Reddit Pixel -->
-	
+a:hover {
+  color: green;
+}
+a:visited {
+  color: unset;
+}
+.btn:hover {
+  cursor: pointer;
+}
+
+
+    </style>
+
+    <!-- Reddit Pixel -->
+    <script>
+      !(function (w, d) {
+        if (!w.rdt) {
+          var p = (w.rdt = function () {
+            p.sendEvent
+              ? p.sendEvent.apply(p, arguments)
+              : p.callQueue.push(arguments);
+          });
+          p.callQueue = [];
+          var t = d.createElement("script");
+          (t.src = "https://www.redditstatic.com/ads/pixel.js"), (t.async = !0);
+          var s = d.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(t, s);
+        }
+      })(window, document);
+      rdt("init", "t2_k9633");
+      rdt("track", "PageVisit");
+    </script>
+    <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
+    <!-- End Reddit Pixel -->
   </head>
   <body>
-  	<div id="header-bg">
-	
-		
-	
-	</div>
-	
-  
-	<div id="page-wrapper" class="d-flex flex-column h-100 min-vh-100">
-		<div class="container-fluid">
-		
-		
-			<div class="row pt-2 pb-2" id="top-header">
-			
-				<div class="col-sm-12 col-md-3">
-					<div class="d-flex justify-content-center">
-						
-						<object width="150" data="img/1.svg" type="image/svg+xml"></object>
-					</div>
-				</div>
-				<div class="w-100 d-none d-md-block col-md-6">
-					
-				</div>
-				<div class="col-sm-12 col-md-3 p-2">
-					<div class="d-flex justify-content-center float-md-right top-right-menu">>
-						<a class="btn btn-primary btn-lg" href="index.html" role="button">License to Clone</a>
-						<a class="btn btn-primary btn-lg" href="deadworld.html" role="button">DeadWorld</a>
-						<a class="btn btn-primary btn-lg" href="arcade-builder.html" role="button">Arcade Builder</a>
-						<a class="btn btn-primary btn-lg" href="https://www.ddgo.wiki/modding/" target="_blank" role="button">Modding</a>
-						<a class="btn btn-primary btn-lg" href="about.html" role="button">About</a>
-					</div>
-				</div>
-				
-			
-			</div>
-		
-		</div>
-		<div class="justify-content-center bg-blue flex-grow-1"  id="content-wrapper">
-			
-<style type="text/css">
-    .explainer img {
-        width: 100%;
-    }
+    <div id="navigation">
+      <div id="sliderSection" class="container col-12">
+        <a
+          id="toggleSliderBtn2"
+          href="#"
+          class="btn"
+          style="
+            color: white;
+            position: fixed;
+            top: 0px;
+            left: 50%;
+            transform: translateX(-50%);
+          "
+        >
+          HIDE
+      </a>
+        <div
+          id="carouselExampleIndicators"
+          class="carousel slide"
+          data-ride="carousel"
+        >
+        <div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img
+                    class="d-block w-90 float-right"
+                    src="img/500x500-ltc.png"
+                    alt="Second slide"
+                  />
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                  <div class="column pl-4">
+                    <h2 class="font-weight-bold">License To Clone</h2><br />
+                      <p>Build your own games arcade from the ground up!</p>
+                        <p class="mb-0">
+
+                        
+
+                        <ul style="color: rgb(93, 93, 93);">
+
+                          <li>Build over 25 items</li>
+                          <li>Research new unlockables</li>
+                          <li>Unique events for guests</li>
+                          <li>Manage the power of your arcade</li>
+                          <li>Hundreds of customers running around</li>
+                          <li>Cute little ponies from claw machines</li>
+
+                        </ul>
+                        </p>
+                        
+                        <p class="mb-0">
+                          <a href="license-to-clone.html" class=" btn btn-primary">Learn More!</a>
+                        </p>
+                        <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img
+                    class="d-block w-90 float-right"
+                    src="img/500x500-dw.png"
+                    alt="Second slide"
+                  />
+                </div>
+
+                
+                <div class="col-md-6 d-flex align-items-center">
+                  <div class="column pl-4">
+                    <h2 class="font-weight-bold">DeadWorld</h2><br />
+                      <p>Tiny survival game in your browser!</p>
+                        <p class="mb-0">
+
+                        
+
+                        <ul style="color: rgb(93, 93, 93);">
+
+                          <li>Fight wild animals for their hides</li>
+                          <li>Visit local shops to trade</li>
+                          <li>Hire new recruits to help you</li>
+                          <li>Gather resources to build and craft</li>
+                          <li>Construct your base to store and fabricate items</li>
+                          <li>Watch out for the wolves... And the cats... And the rest...</li>
+
+                        </ul>
+                        </p>
+                        
+                        <p class="mb-0">
+                          <a href="deadworld.html" class=" btn btn-primary">Play Now!</a>
+                        </p>
+                        <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+
+            <div class="carousel-item">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img
+                    class="d-block w-90 float-right"
+                    src="img/500x500-ab.png"
+                    alt="Second slide"
+                  />
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                  <div class="column pl-4">
+                      <h2 class="font-weight-bold">Arcade Builder</h2><br />
+                      <p>Build your own games arcade from the ground up!</p>
+                        <p class="mb-0">
+
+                        
+
+                        <ul style="color: rgb(93, 93, 93);">
+
+                          <li>Build over 25 items</li>
+                          <li>Research new unlockables</li>
+                          <li>Unique events for guests</li>
+                          <li>Manage the power of your arcade</li>
+                          <li>Hundreds of customers running around</li>
+                          <li>Cute little ponies from claw machines</li>
+
+                        </ul>
+                        </p>
+                        
+                        <p class="mb-0">
+                          <a href="arcade-builder.html" class=" btn btn-primary">Play Now!</a>
+                        </p>
+                        <p></p>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row no-gutters">
+                <div class="col-md-6">
+                  <img
+                    class="d-block w-90 float-right"
+                    src="img/500x500-ac.png"
+                    alt="Second slide"
+                  />
+                </div>
+                <div class="col-md-6 d-flex align-items-center">
+                  <div class="column pl-4">
+                    <h2 class="font-weight-bold">Astro Colonist</h2><br />
+                      <p>Take control of the solar systems planets!</p>
+                        <p class="mb-0">
+
+                        <ul style="color: rgb(93, 93, 93);">
+
+                          <li>Colonize new planets</li>
+                          <li>Launch satellites and space stations</li>
+                          <li>Build miners for much needed resources</li>
+                          <li>Progress through research unlocks</li>
+                          <li>Face alien threats</li>
+                          <li>Avatars to help guide you, trade and fight</li>
+
+                        </ul>
+                        </p>
+                        
+                        <p class="mb-0">
+                          <a href="astro-colonist.html" class=" btn btn-primary">Play Now!</a>
+                        </p>
+                        <p></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <a
+            class="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+            style="max-height: 500px;"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+            style="max-height: 500px;"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <ol class="carousel-indicators">
+          <li
+            data-target="#carouselExampleIndicators"
+            data-slide-to="0"
+            class="active"
+          ></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+        </ol>
+        </div>
+      </div>
+
+     
+      
+    </div>
+    <a
+    id="toggleSliderBtn"
+    class="btn"
+    href="#"
+    style="
+      color: white;
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index:50;
+    "
+  >
+    MORE GAMES
+  </a>
+    <div id="header-bg"></div>
+    <div id="page-wrapper" class="d-flex flex-column h-100 min-vh-100">
+      <div class="container-fluid" style="min-height:100px;">
+        <div class="row pt-2 pb-2" id="top-header">
+          <div class="container col-lg-10 col-md-12 col-12" style="max-width:1322px">
+            <a class="navbar-brand" href="index.html">
+              <b class="black-and-white-picture-regular" style="color: rgb(215, 17, 17);">Jam</b> <b class="black-and-white-picture-regular" style="color: white;">Donut</b>
+              <i style="position:absolute; margin-left: -60px;margin-top: 50px;font-size: 12px;color: rgb(212, 212, 212);"">games.com</i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div
+        class="justify-content-center bg-blue flex-grow-1"
+        id="content-wrapper"
+      >
+        <div class="container pt-4 pb-4 col-lg-10 col-md-12 col-12 h-100 min-vh-100" style="max-width:1322px">
+          <div class="explainer p-4 min-vh-100">
+            <div id="page-wrapper" class="d-flex flex-column min-vh-100">
+              <div class="comp-whole">
+                <style type="text/css">
+  .card {
+    background-color: #2b2b2b;
+  }
 </style>
-<div class="container pt-4" >
-			
-         <!--- Explainer -->
-		 <div class="explainer p-4">
-			<div class="comp-whole">
-				<h3>Behind the donut</h3>
-				
-				<p>Jam Donut Games is the development studio of hobbyist games developer Adam (Jam) Dougherty (Donut) a developer from the UK.</p>
-				
-				<p>I've been developing software for 10 years professionally now but have never been a professional game developer. I enjoy making games in my spare time and hope to create a small niche for myself in the simulation market for desktop and mobile :P</p>
-				
-				<p>In my About page I have tried to add details of the technical aspect of my games as well as personal opinions in order to allow other developers and creators to get a sense of the challenges involved in the project. Maybe there will be some take away for others.
-				
-				<h3>Why do I make games?</h3>
-				
-				<p>For me, making a game is just as fun as playing a game. I also try to get in as much gaming time as I can since it's an amazing hobby to have.</p>
-				
-				<p>Sometimes though, when no game is scratching the itch I just have to open my editor and code something, it's just like any creative or challenging game. Even making this webpage is part of that fun side of "making my own game".</p>
-				
-				<p>That doesn't mean game development is just as easy as playing a game though... As a seasoned technical engineer I try my hardest to complete a personal project and take away from it anything that I can learn.</p>
-				
-				<p>Some of my inspirations are obvious and I'm not shy about admitting it, Prison Architect and Rimworld are two amazing games which inspired the gameplay loop and art style of Arcade Builder. Reminds me of some saying about the sincerest form of flattery.</p>
-				
-				<p>Aside from my influencers some other great games I love to play include Kerbal Space Program, Oxygen Not Included, Ark Survival Evolved and Kenshi. I highly recommend playing these games if you enjoy strategy or simulation!</p>
-				
-				<h3>Latest game showcase: Arcade Builder</h3>
-				
-				<p>Arcade Builder is a mobile, desktop and browser game built from the ground up as a solo project over a few years by myself.</p>
-				
-				<p>It's a great little game that let's you:
-				
-				<ul>
-					<li>Build your own arcade business from the ground up.</li>
-					<li>Hire and manage your staff</li>
-					<li>Get hundreds of customers in your arcade</li>
-					<li>Unlock research and find new suppliers</li>
-					<li>Place loads of furniture and arcade machines</li>
-				</ul>
-				
-				<h3>Creation</h3>
-				
-				<p>The development started out as a simple "I wonder if I could make a '<a href="https://www.youtube.com/watch?v=C8oiwnNlyE4" target="_blank" title="Trailer for flatland the movie">flatland</a>' in javascript"... which lead on to realizing the game potential for what I was developing. Here's some footage on youtube from that version: <a target="_blank" href="https://www.youtube.com/watch?v=wyhPWiRk3Pc">https://www.youtube.com/watch?v=wyhPWiRk3Pc</a></p>
-								
-				<p>After creating the demo previously shared I really wanted to make a game with what I had started. After staring at the screen and the little shapes walking around for a while it started to remind me of games I've played before... Prison Architect and Rimworld</p>
-				
-				<p>With this in mind I came to realise a lot of the fundamentals that could go into making this game, such as the building of walls, placing of furniture, and staff/ai interacting with the furniture. I'm not gonna lie, the thought of my own little dudes walking around doing stuff was pretty cool.</p>
-				
-				<p>The idea for the game has evolved since day one, originally the game was going to be a hotel simulator but it just felt too obvious. In the end I decided to go with an Arcades Business simulator; inspired while on a trip to one of the arcades in my home town Blackpool. Now I had a game idea I wanted to go with... All that was left was making the damn thing!!</p>
-				
-				<h3>The 'art'</h3>
-				
-				<p>When starting development on the game I had to face my fears of needing art for the game... In the past I have used mostly Pixel Art in my projects, but with this project I wanted to learn a new 'style' and so picked up Inkscape to do the art for the game. The overall goal was to get the art to look similar to other successful indie games, I'd say I got a solid 5/10 on that goal :P</p>
-				
-				<p>With an understanding that my art wasn't going to be amazing I tried to ensure I would focus on the AI working, and having enough gameplay elements to make a fun game.</p>
-				
-				<h3>What about the code?</h3>
-				
-				<p>The games engine is developed in pure javascript using Notepad++. I do use IDE's and other tools in my work but for my hobbies I love using just a simple editor, sometimes I'll even write entire applications/chunks of code just in the chrome console</p>
-				
-				<p>26k Lines of code excluding tooling/build scripts as of Jan 2020</p>
-				
-				<p>Honest opinion: The code has it's upsides and it's downsides... the UI is a big mess of spaghetti and probably contributes to about 30% of the overall code (its just bad c+p code, trust me) but atleast I've controlled it by seperating code off into different files... The missions, research, upgrades all that is pretty basic but powerful so I like that. The saving system is quite good too.
-				
-				<p>The worst part to make: AI is just a pain.. Once you've nailed it you'll realise you're only 10% through the nightmare haha</p>
-				
-				<p>I utilise a few Open Source projects that really enable the development of my games, these include:</p>
-				
-				<ul>
-					<li><a target="_blank" href="https://www.pixijs.com/">PixiJS - WebGL rendering engine</a></li>
-					<li><a target="_blank" href="https://www.createjs.com/">CreateJS - Tweens and more</a></li>
-					<li><a target="_blank" href="https://howlerjs.com/">Howler - Audio</a></li>
-					
-				</ul>
-				
-				<h3>Why not Unity/Unreal/Phaser etc?</h3>
-				
-				<p>My professional roles take me across several languages (PHP, Powershell, C#, JS) and my favourite was always JS... when HTML5 emerged years ago I decided I wanted to focus my efforts there only. </p>
-				<p>I have used HTML5 engines such as Phaser and Construct (AstroColonist &amp; Attraction are both Construct 2) which are brilliant tools, but I always wanted to dig deeper into the code and how each individual "tick" was processed.</p>
-				<p>In the future I want to learn even more about the rendering layer, such as GPU rendering and Shaders.</p>
-				<h3>Other Credits</h3>
-				
-				<p>As a solo developer I rely heavily on friends, family and open source and therefore I would like to credit the following for helping in all my projects.</p>
-				
-				<ul>
-					<li>My parents</li>
-					<li>Friends - Everyone who helps me test</li>
-					<li>WensdiMade - For all sorts, no value can be placed on her contributions.</li>
-					<li>Pash - For all sorts, no value can be placed on his contributions.</li>
-					<li>Daniel Winfield - For patient testing and feedback</li>
-					<li>PixiJS Contributors - If I didn't find this renderer, I wouldn't have had this much fun.</li>
-				</ul>
-				
-				<h3>Tips for other creators</h3>
-				
-				<p>Some really simple tips that seem obvious but you have to keep reminding yourself... just keep going, set goals, make what you want to make...</p>
-				
-				<p>If you stop for a while, that's fine just pick it back up again later, it'll feel nice and fresh in your mind when you come back to it.</p>
-				
-				<p>Remake as you go. Especially true for UI, code and art. You might have made an art asset or a piece of code already, but I bet you could make it better a second time round or even the third time round... So if it ever comes down to improving something by replacing it, don't get precious about the thing you're throwing away. Life goes on.</p>
-				
-				<p>Appreciate feedback, even the bad feedback. It'll be hard sometimes but even bad feedback is probably *real* feedback. You should seek feedback at every chance you get. My family and friends are probably sick of receiving 2-3 screenshots every day or so asking what they think. But it helps me and my project :)</p>
-				
-				<h3>Future</h3>
-				
-				<p>In the future I hope to release at least a couple more games on the same engine I've developed for Arcade Builder. I have a few ideas in the works such as a Casino building game, as well as potentially using the engine for more complex games, such as a survival builder or colony simulator.</p>
-				
-				<h3>Talk to me!</h3>
-				
-				<p>If you want to keep up to date with my development or give me feedback you can follow and tweet me on twitter <a href="https://twitter.com/AJamDonut" target="_blank">@aJamDonut</a></p>
-				
-				<p>If you like what I'm doing and want to chat please drop me a pm on twitter! If you want to join my community on discord then use the link here: <a href="https://discord.gg/mBZ7zDQ" target="_blank">Discord Server</a>
-				
-				<h3>TLDR</h3>
-				
-				<p>Some British Tea lover made a simulation game in Javascript that works on mobile, desktop and browser. He learnt a lot along the way, it was hard but fun and everyone lived happily ever after.</p>
-				
-				<h3>Other Games</h3>
-				
-				<p>I always endeavour to complete a game project even if it may mean there are certain shortcomings with gameplay, for this reason ofcourse the games are always free and available online:</p>
-				
-				<p>You can check out some draft games and devlogs here: <a href="https://www.youtube.com/channel/UC5yH3WaxAWLYRVLIWveh7dg" target="_blank">https://www.youtube.com/channel/UC5yH3WaxAWLYRVLIWveh7dg</a></p>
-				
-				<p>Here are a selection of some of the games I've developed in the past!</p>
-				
-				<p><a target="_blank" href="https://www.newgrounds.com/portal/view/691403">Attraction</a> - A short simplistic platformer where your arrow keys control two players at once.</p>
-				<p><a target="_blank" href="https://www.newgrounds.com/portal/view/691399">AstroColonst</a> - A 2D space RTS with planet management, alien attacks and RNG solar systems.</p>
-				<p><a target="_blank" href="https://www.newgrounds.com/portal/view/696901">Arcade Builder Classic</a> - The original release of Arcade Builder</p>
-				<p><a target="_blank" href="https://www.world-mafia.com/">World-Mafia</a> - A multiplayer text-based mafia game with missions, heists and a great community</p>
-				<br />
-			<div class="container-fluid">
-				<p>Copyright jamdonutgames.com 2024 - Jam Donut Games trading name of Green Room Software Ltd. Registered United Kingdom</p>
-				<p><a href="about.html">About</a> - <a href="data-policy.html">Data Policy</a></p>
-			</div>
-			</div>
-		</div>
-				<!--- //Explainer -->
-				</div>
-			</div>
-					<!--- //Explainer -->
+<div class="container my-5">
+  <!-- Adam Dougherty Section -->
+  <div class="row">
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">Adam Dougherty</h2>
+          <h4 class="card-subtitle mb-2 text-muted">
+            Programmer/Art/Main Quest
+          </h4>
+          <p class="card-text">
+            Greetings, everyone! I'm the mastermind behind our games. My journey
+            began with creating games and animations as a kid, a hobby that
+            quickly became a passion.
+          </p>
+          <p class="card-text">
+            I've always relished the challenge of tough games. From the
+            adrenaline-fueled time trials in DeadRising to the strategic
+            scarcity of ammo in Alan Wake, these experiences shaped my gaming
+            palate.
+          </p>
+          <p class="card-text">
+            As the indie game scene exploded, I found myself drawn to
+            groundbreaking titles like Kerbal Space Program, Ark, and Oxygen Not
+            Included—now legends in the gaming world.
+          </p>
+          <p class="card-text">
+            The release of GameDev Tycoon on Steam Greenlight was a turning
+            point for me. Written in JavaScript, its elegant simplicity and
+            massive success inspired me. I realized that with my JavaScript
+            skills, I could create something extraordinary.
+          </p>
+          <p class="card-text">
+            Driven by this epiphany, I embarked on a quest to master game
+            development. I started by crafting free games for everyone to enjoy,
+            constantly pushing myself to innovate. My ultimate goal? To create
+            the most complex and captivating game possible using JavaScript.
+          </p>
+        </div>
+      </div>
+    </div>
 
-				<!--- //Explainer -->
-		
-		
-			</div>
-			
-			
-			</div>
-		
-		
-	</div>
-	
+    <!-- Artem Moroz Section -->
+    <div class="col-lg-6 mb-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <h2 class="card-title">Artem Moroz</h2>
+          <h4 class="card-subtitle mb-2 text-muted">
+            Level Designer/Video Production/Art
+          </h4>
+          <p class="card-text">
+            Embarking on my game development odyssey, I dove into Unity to craft
+            my own FPS game while toggling between ambitions of indie game dev
+            and YouTube stardom.
+          </p>
+          <p class="card-text">
+            During this phase, I honed my video-editing prowess through various
+            YouTube ventures and creating hilarious videos for friends.
+            Surprisingly, these skills have proven invaluable.
+          </p>
+          <p class="card-text">
+            My creative spark is fueled by iconic games like Portal 2, with its
+            eerie liminal spaces and intricate puzzles, and Minecraft, which
+            unlocked my boundless creativity. Games like RimWorld and Prison
+            Architect, which deeply influence our current project, have been my
+            long-time companions.
+          </p>
+          <p class="card-text">
+            I also thrive on grand strategy games like Europa Universalis IV,
+            Crusader Kings III, and Victoria 3. These games have not only
+            inflated my Steam playtime but have also enriched my historical
+            knowledge.
+          </p>
+          <p class="card-text">
+            Games and technology are my essence. Working on a project that
+            channels my passion and creativity while resonating deeply with me
+            is a dream come true.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+    <div class="card p-4">
+      <h2>Speak to us</h2>
+      <p>You can find us hanging out on discord <a href="https://discord.gg/CmSFawGNeU">here</a></p>
+      <p>Email: contact [at] jamdonutgames.com</p>
+    </div>
+  
+  
+</div>
 
+
+
+              </div>
+
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <footer class="text-center">
+        <div class="container">
+          <p>
+            Copyright jamdonutgames.com 2024 - Jam Donut Games trading name of
+            Green Room Software Ltd. Registered United Kingdom
+          </p>
+          <p>The Game Development home of Adam Dougherty</p>
+          <p>
+            <a href="about.html">About</a> -
+            <a href="data-policy.html">Data Policy</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    
+    
+
+    <script>
+      (() => {
+
+        document.querySelectorAll('iframe').forEach(function(iframe) {
+          iframe.parentElement.style.overflow = 'hidden';
+          iframe.style.pointerEvents = 'none';
+      
+          iframe.parentElement.addEventListener('mouseenter', function() {
+              iframe.style.pointerEvents = 'auto';
+              document.body.style.overflow = 'hidden'; // Disable scrolling on hover
+          });
+      
+          iframe.parentElement.addEventListener('mouseleave', function() {
+              iframe.style.pointerEvents = 'none';
+              document.body.style.overflow = ''; // Enable scrolling when not hovering
+          });
+      });
+
+        console.log("rUNO");
+        function bindClick(name) {
+          document.getElementById(name).addEventListener("click", function () {
+            var sliderSection = document.getElementById("sliderSection");
+            console.log("Cliko", sliderSection.style.display);
+
+            if (
+              !sliderSection.style.display ||
+              sliderSection.style.display === "none"
+            ) {
+              sliderSection.style.display = "block";
+            } else {
+              sliderSection.style.display = "none";
+            }
+          });
+        }
+
+        bindClick("toggleSliderBtn");
+        bindClick("toggleSliderBtn2");
+      })();
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-0K8J84CPV7"></script>
-	<script>
-	window.dataLayer = window.dataLayer || [];
-	function gtag(){dataLayer.push(arguments);}
-	gtag('js', new Date());
-
-	gtag('config', 'G-0K8J84CPV7');
-	</script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0K8J84CPV7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-0K8J84CPV7");
+    </script>
   </body>
 </html>
