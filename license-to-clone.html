@@ -41,7 +41,6 @@
     <style type="text/css">
       #sliderSection {
         display: none;
-        position: fixed;
         padding-bottom: 100px;
         top: 0;
         width: 100%;
@@ -200,7 +199,7 @@
       }
       #navigation {
         z-index: 100;
-        position: fixed;
+        
       }
       #carouselExampleIndicators {
         top: 50px;
@@ -280,7 +279,7 @@ a:visited {
           class="btn"
           style="
             color: white;
-            position: fixed;
+            position: absolute;
             top: 0px;
             left: 50%;
             transform: translateX(-50%);
@@ -502,17 +501,38 @@ a:visited {
     MORE GAMES
   </a>
     <div id="header-bg"></div>
+
+
     <div id="page-wrapper" class="d-flex flex-column h-100 min-vh-100">
-      <div class="container-fluid" style="min-height:100px;">
-        <div class="row pt-2 pb-2" id="top-header">
-          <div class="container col-lg-10 col-md-12 col-12" style="max-width:1322px">
-            <a class="navbar-brand" href="index.html">
-              <b class="black-and-white-picture-regular" style="color: rgb(215, 17, 17);">Jam</b> <b class="black-and-white-picture-regular" style="color: white;">Donut</b>
-              <i style="position:absolute; margin-left: -60px;margin-top: 50px;font-size: 12px;color: rgb(212, 212, 212);"">games.com</i>
-            </a>
+
+      <div class="d-none d-sm-block">
+            <div class="container-fluid" style="min-height:100px;">
+              <div class="row pt-2 pb-2" id="top-header">
+                <div class="container col-lg-10 col-md-12 col-12" style="max-width:1322px">
+                  <a class="navbar-brand" href="index.html">
+                    <b class="black-and-white-picture-regular" style="color: rgb(215, 17, 17);">Jam</b> <b class="black-and-white-picture-regular" style="color: white;">Donut</b>
+                    <i style="position:absolute; margin-left: -60px;margin-top: 50px;font-size: 12px;color: rgb(212, 212, 212);"">games.com</i>
+                  </a>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="d-block d-sm-none">
+        <div class="container-fluid" style="min-height:100px;">
+          <div class="row pt-2 pb-2" id="top-header">
+            <div class="container col-lg-10 col-md-12 col-12" style="height:70px;">
+              <a class="navbar-brand" href="index.html">
+                <b class="black-and-white-picture-regular" style="font-size: 30px;color: rgb(215, 17, 17);">Jam</b> 
+                <b class="black-and-white-picture-regular" style="font-size: 30px;color: white;">Donut</b>
+                <i style="position:absolute; margin-left: -90px;margin-top: 25px;font-size: 15px;color: rgb(212, 212, 212);"">games.com</i>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
+  </div>
+            
+
+
       <div
         class="justify-content-center bg-blue flex-grow-1"
         id="content-wrapper"
@@ -531,7 +551,15 @@ a:visited {
     <div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
         <div class="row justify-content-center">
             <div class="col-12 justify-content-center">
-                <iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="646" height="190"></iframe>
+                <div class="d-none d-lg-block">
+                    <iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="700" height="190"></iframe>
+                  </div>
+                <div class="d-none d-sm-block d-lg-none">
+                    <iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="500" height="190"></iframe>
+                  </div>
+                  <div class="d-block d-sm-none">
+                    <iframe style="min-width:100%;" src="https://store.steampowered.com/widget/964090/" frameborder="0" width="400" height="190"></iframe>
+                  </div>
             </div>
         </div>
     </div>
@@ -579,7 +607,15 @@ a:visited {
         <div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
             <div class="row justify-content-center">
                 <div class="col-12 justify-content-center">
-                    <iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="646" height="190"></iframe>
+                    <div class="d-none d-lg-block">
+                        <iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="700" height="190"></iframe>
+                      </div>
+                    <div class="d-none d-sm-block d-lg-none">
+                        <iframe src="https://store.steampowered.com/widget/964090/" frameborder="0" width="500" height="190"></iframe>
+                      </div>
+                      <div class="d-block d-sm-none">
+                        <iframe style="min-width:100%;" src="https://store.steampowered.com/widget/964090/" frameborder="0" width="400" height="190"></iframe>
+                      </div>
                 </div>
             </div>
         </div>
