@@ -89,3 +89,22 @@
   </div>
 </div>
 -->
+
+<script type="text/javascript">
+  (() => {
+    document.querySelectorAll("iframe").forEach(function (iframe) {
+      iframe.parentElement.style.overflow = "hidden";
+      iframe.style.pointerEvents = "none";
+
+      iframe.parentElement.addEventListener("mouseenter", function () {
+        iframe.style.pointerEvents = "auto";
+        document.body.style.overflow = "hidden"; // Disable scrolling on hover
+      });
+
+      iframe.parentElement.addEventListener("mouseleave", function () {
+        iframe.style.pointerEvents = "none";
+        document.body.style.overflow = ""; // Enable scrolling when not hovering
+      });
+    });
+  })();
+</script>

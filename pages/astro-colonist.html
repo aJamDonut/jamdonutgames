@@ -4,7 +4,7 @@
     padding: 10px;
     background-color: rgb(61 61 61);
     margin-bottom: 10px;
-}
+  }
 </style>
 
 <div class="row split-row" id="explains-game">
@@ -12,7 +12,9 @@
     <h1>Astro Colonist</h1>
 
     <p>Take over the solar system</p>
-    <p>Take over a randomly generated solar system and see if you can survive.</p>
+    <p>
+      Take over a randomly generated solar system and see if you can survive.
+    </p>
     <p>Research new technology, launch satellites and build space defences.</p>
     <h4>Features</h4>
     <br />
@@ -32,7 +34,8 @@
     let checking = null;
     function checkPassword() {
       console.log("Play the game");
-      const gameDestination = "https://ajamdonut.github.io/AstroColonist/index.html";
+      const gameDestination =
+        "https://ajamdonut.github.io/AstroColonist/index.html";
       $("#game-iframe").attr("src", gameDestination + "?ts=" + Date.now()); //Cache busts with ts
       $(".game-iframe").removeClass("hidden");
       $(".game-iframe").css("display", "block");
@@ -88,3 +91,22 @@
   </div>
 </div>
 -->
+
+<script type="text/javascript">
+  (() => {
+    document.querySelectorAll("iframe").forEach(function (iframe) {
+      iframe.parentElement.style.overflow = "hidden";
+      iframe.style.pointerEvents = "none";
+
+      iframe.parentElement.addEventListener("mouseenter", function () {
+        iframe.style.pointerEvents = "auto";
+        document.body.style.overflow = "hidden"; // Disable scrolling on hover
+      });
+
+      iframe.parentElement.addEventListener("mouseleave", function () {
+        iframe.style.pointerEvents = "none";
+        document.body.style.overflow = ""; // Enable scrolling when not hovering
+      });
+    });
+  })();
+</script>
