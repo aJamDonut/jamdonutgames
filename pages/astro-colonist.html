@@ -42,8 +42,15 @@
 
       $("#page-wrapper").removeClass("h-100");
       $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      $(".game-iframe").css("width", window.innerWidth - 124);
+    
+      $("#content-holder").css('maxWidth', "100%");
+
       setInterval(() => {
         $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      $(".game-iframe").css("width", window.innerWidth - 124);
+        
+        
       }, 1000);
       $("#frame-intro").hide();
       $("#explains-game").hide();
@@ -51,7 +58,7 @@
   </script>
 
   <div class="col-12">
-    <div class="">
+    <div class="justify-content-center">
       <div class="game-iframe hidden" style="display: none">
         <iframe
           style="width: 100%"

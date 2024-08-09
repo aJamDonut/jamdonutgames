@@ -537,7 +537,7 @@ a:visited {
         class="justify-content-center bg-blue flex-grow-1"
         id="content-wrapper"
       >
-        <div class="container pt-4 pb-4 col-lg-10 col-md-12 col-12 h-100 min-vh-100" style="max-width:1322px">
+        <div id="content-holder" class="container pt-4 pb-4 col-lg-10 col-md-12 col-12 h-100 min-vh-100" style="max-width:1322px">
           <div class="explainer p-4 min-vh-100">
             <div id="page-wrapper" class="d-flex flex-column min-vh-100">
               <div class="comp-whole">
@@ -585,8 +585,15 @@ a:visited {
 
       $("#page-wrapper").removeClass("h-100");
       $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      $(".game-iframe").css("width", window.innerWidth - 124);
+    
+      $("#content-holder").css('maxWidth', "100%");
+
       setInterval(() => {
         $("#game-iframe").css("height", window.innerHeight - 64 - 10);
+      $(".game-iframe").css("width", window.innerWidth - 124);
+        
+        
       }, 1000);
       $("#frame-intro").hide();
       $("#explains-game").hide();
@@ -594,7 +601,7 @@ a:visited {
   </script>
 
   <div class="col-12">
-    <div class="">
+    <div class="justify-content-center">
       <div class="game-iframe hidden" style="display: none">
         <iframe
           style="width: 100%"
