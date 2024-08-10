@@ -88,6 +88,153 @@
   </div>
 </div>
 
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Screenshots</h4>
+  </div>
+</div>
+
+<div class="gallery container mt-4">
+  <div class="row">
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ac/1.jpg"
+          class="img-fluid"
+          alt="Gallery Image 1"
+        />
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ac/3.png"
+          class="img-fluid"
+          alt="Gallery Image 5"
+        />
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ac/2.jpg"
+          class="img-fluid"
+          alt="Gallery Image 5"
+        />
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ac/4.png"
+          class="img-fluid"
+          alt="Gallery Image 5"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade pt-5"
+  id="imageModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="imageModalLabel"
+  aria-hidden="true"
+  style="z-index: 1051"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Screenshot</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img
+          src="https://via.placeholder.com/800x600"
+          class="img-fluid"
+          alt="Large Image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Gameplay</h4>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <iframe
+      width="960"
+      height="600"
+      src="https://www.youtube.com/embed/fy5rm2TMjZM?si=OPYlBsmcTa274BrC"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Made With</h4>
+  </div>
+  <div class="row justify-content-center">
+    <p>Construct 2, Adobe Photoshop</p>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Made By</h4>
+  </div>
+  <div class="row justify-content-center">
+    <p>Adam Dougherty</p>
+  </div>
+</div>
+
+<style>
+  .container .row .col-3 img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(90vh - 1rem);
+  }
+  .modal-backdrop {
+    z-index: 1040;
+    display: none;
+  }
+  .modal {
+    z-index: 1050;
+  }
+  .modal img {
+    -webkit-filter: unset;
+  }
+  .container .row .col-3 img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+</style>
 <!--
 <div class="row split-row" id="explains-help">
   <div class="col-12">
@@ -117,3 +264,28 @@
     });
   })();
 </script>
+
+<script type="text/javascript">
+  // JavaScript to update modal image when a gallery image is clicked
+  document.querySelectorAll('[data-toggle="modal"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function () {
+      // Get the src of the clicked image
+      var imgSrc = this.querySelector("img").getAttribute("src");
+
+      // Update the src of the modal image
+      var modalImage = document.querySelector("#imageModal img");
+      modalImage.setAttribute("src", imgSrc);
+    });
+  });
+</script>
+
+<style type="text/css">
+  .gallery img{
+     
+      min-width: 110px;
+    
+  }
+  .gallery .col-3 {
+    justify-content: center !important;
+  }
+</style>
