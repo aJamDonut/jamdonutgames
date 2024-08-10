@@ -557,7 +557,7 @@ a:visited {
     padding: 10px;
     background-color: rgb(61 61 61);
     margin-bottom: 10px;
-}
+  }
 </style>
 
 <div class="row split-row" id="explains-game">
@@ -565,7 +565,10 @@ a:visited {
     <h1>Arcade Builder</h1>
 
     <p>Create and operate your very own games arcade!</p>
-    <p>Start off with just a few pinball machines and grow your arcade into a huge funzone!</p>
+    <p>
+      Start off with just a few pinball machines and grow your arcade into a
+      huge funzone!
+    </p>
     <p>Hire staff, increase marketing and research your way to the future.</p>
     <h4>Features</h4>
     <br />
@@ -586,7 +589,8 @@ a:visited {
     let checking = null;
     function checkPassword() {
       console.log("Play the game");
-      const gameDestination = "https://ajamdonut.github.io/ArcadeBuilder/index.html";
+      const gameDestination =
+        "https://ajamdonut.github.io/ArcadeBuilder/index.html";
       $("#game-iframe").attr("src", gameDestination + "?ts=" + Date.now()); //Cache busts with ts
       $(".game-iframe").removeClass("hidden");
       $(".game-iframe").css("display", "block");
@@ -632,6 +636,153 @@ a:visited {
   </div>
 </div>
 
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Screenshots</h4>
+  </div>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ab/1.jpg"
+          class="img-fluid"
+          alt="Gallery Image 1"
+        />
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ab/2.png"
+          class="img-fluid"
+          alt="Gallery Image 5"
+        />
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ab/3.png"
+          class="img-fluid"
+          alt="Gallery Image 5"
+        />
+      </a>
+    </div>
+    <div class="col-3">
+      <a href="#" data-toggle="modal" data-target="#imageModal">
+        <img
+          src="screenshots/ab/4.gif"
+          class="img-fluid"
+          alt="Gallery Image 5"
+        />
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade pt-5"
+  id="imageModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="imageModalLabel"
+  aria-hidden="true"
+  style="z-index: 1051"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="imageModalLabel">Screenshot</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img
+          src="https://via.placeholder.com/800x600"
+          class="img-fluid"
+          alt="Large Image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Trailer</h4>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <iframe
+      width="960"
+      height="600"
+      src="https://www.youtube.com/embed/QqMoqPwRACc?si=5raZbW0gM2qv1q3Y"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Made With</h4>
+  </div>
+  <div class="row justify-content-center">
+    <p>PixiJS, Pixi-Tilemap, HowlerJS, Qiao-PathFinding</p>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Made By</h4>
+  </div>
+  <div class="row justify-content-center">
+    <p>Adam Dougherty</p>
+  </div>
+</div>
+
+<style>
+  .container .row .col-3 img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(90vh - 1rem);
+  }
+  .modal-backdrop {
+    z-index: 1040;
+    display: none;
+  }
+  .modal {
+    z-index: 1050;
+  }
+  .modal img {
+    -webkit-filter: unset;
+  }
+  .container .row .col-3 img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+</style>
 <!--
 <div class="row split-row" id="explains-help">
   <div class="col-12">
@@ -661,6 +812,21 @@ a:visited {
     });
   })();
 </script>
+
+<script type="text/javascript">
+  // JavaScript to update modal image when a gallery image is clicked
+  document.querySelectorAll('[data-toggle="modal"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function () {
+      // Get the src of the clicked image
+      var imgSrc = this.querySelector("img").getAttribute("src");
+
+      // Update the src of the modal image
+      var modalImage = document.querySelector("#imageModal img");
+      modalImage.setAttribute("src", imgSrc);
+    });
+  });
+</script>
+
               </div>
 
             </div>
