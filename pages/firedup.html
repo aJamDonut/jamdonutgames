@@ -1,0 +1,117 @@
+<h1>Login</h1>
+    <div id="firebaseui-auth-container"></div>
+
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.css"
+/>
+<script src="https://www.gstatic.com/firebasejs/ui/6.0.0/firebase-ui-auth.js"></script>
+
+<script>
+  document.getElementById("signUpBtn").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    signUp(email, password);
+  });
+
+  document.getElementById("signInBtn").addEventListener("click", () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    signIn(email, password);
+  });
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+  // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-analytics.js";
+
+  // Add Firebase products that you want to use
+  import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    GoogleAuthProvider,
+    signInWithPopup,
+  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDUbA6RBOO44rShQS24Bl1RjGb3zwentrY",
+    authDomain: "jamdonutgames.firebaseapp.com",
+    projectId: "jamdonutgames",
+    storageBucket: "jamdonutgames.appspot.com",
+    messagingSenderId: "626484804954",
+    appId: "1:626484804954:web:336b60051299238aab4763",
+    measurementId: "G-TCQYEGH8Q1",
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
+  const auth = getAuth(app);
+  const analytics = getAnalytics(app);
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("User is signed in:", user);
+    } else {
+      console.log("No user is signed in");
+    }
+  });
+
+  // Sign up a new user
+  const signUp = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User signed up:", user);
+      })
+      .catch((error) => {
+        console.error("Error signing up:", error.message);
+      });
+  };
+
+  // Sign in an existing user
+  const signIn = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log("User signed in:", user);
+      })
+      .catch((error) => {
+        console.error("Error signing in:", error.message);
+      });
+  };
+
+  const uiConfig = {
+    signInSuccessUrl: "/", // URL to redirect to after a successful sign-in
+    signInOptions: [
+      // List of OAuth providers supported by FirebaseUI
+      auth.GoogleAuthProvider.PROVIDER_ID,
+      auth.FacebookAuthProvider.PROVIDER_ID,
+      auth.TwitterAuthProvider.PROVIDER_ID,
+      auth.GithubAuthProvider.PROVIDER_ID,
+      auth.EmailAuthProvider.PROVIDER_ID,
+    ],
+    // Other config options...
+    tosUrl: "/terms-of-service", // Terms of service url
+    privacyPolicyUrl: "/privacy-policy", // Privacy policy url
+  };
+
+  import * as firebaseui from "firebaseui";
+
+  // Initialize the FirebaseUI Widget using Firebase.
+  const ui = new firebaseui.auth.AuthUI(auth);
+
+  // The start method will wait until the DOM is loaded.
+  ui.start("#firebaseui-auth-container", uiConfig);
+</script>

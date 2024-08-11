@@ -1,0 +1,169 @@
+<style type="text/css">
+  .split-row {
+    border: 1px solid #2f2f2f;
+    padding: 10px;
+    background-color: rgb(61 61 61);
+    margin-bottom: 10px;
+}
+</style>
+
+<div class="row split-row" id="explains-game">
+  <div class="col-12">
+    <h1>Character Maker</h1>
+
+    <p>Fun little character maker</p>
+    
+    <h4>Features</h4>
+    <br />
+    <ul>
+      <li>Get creative and use any sprite you want</li>
+      <li>See the changes realtime</li>
+      <li>Pick the body to go with your character</li>
+    </ul>
+  </div>
+</div>
+
+<div class="row split-row">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/core.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+
+  <script type="text/javascript">
+    
+    let checking = null;
+    function checkPassword() {
+      console.log("Play the game");
+      const gameDestination = "https://ajamdonut.github.io/deadworld/0.9.0.15/deaddesert.html?localStorage=true&noAudio=false&test=true&type=component&unit=hud_head_maker&x=9&y=13&tt=y&map=live&deadworld=true&askLanguage=false";
+      $("#game-iframe").attr("src", gameDestination + "&ts=" + Date.now()); //Cache busts with ts
+      $(".game-iframe").removeClass("hidden");
+      $(".game-iframe").css("display", "block");
+
+      $("#page-wrapper").removeClass("h-100");
+   
+      
+      $("#frame-intro").hide();
+      $("#explains-game").hide();
+    }
+  </script>
+
+  <div class="col-12">
+    <div class="">
+      <div class="game-iframe hidden p-5" style="background-color:black;display: none">
+        <iframe
+          width="750"
+          height="750"
+          allowfullscreen
+          frameborder="0"
+          class="game-iframe hidden"
+          id="game-iframe"
+          src="about:blank"
+        ></iframe>
+      </div>
+
+      <div class="row justify-content-center" id="frame-intro">
+        <div class="">
+          <img src="img/deadworld_logo.png" height="250" />
+        </div>
+        <div class="col-12">
+          <div class="white-trans-bg">
+            <a
+              href="javascript:checkPassword()"
+              class="btn btn-large btn-block btn-primary"
+              >Play</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4 justify-content-center">
+  <div class="row justify-content-center">
+    <h4>Characters From</h4>
+  </div>
+  <div class="row justify-content-center">
+    <p>License To Clone</p>
+  </div>
+</div>
+
+<style>
+  .container .row .col-3 img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+  .modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(90vh - 1rem);
+  }
+  .modal-backdrop {
+    z-index: 1040;
+    display: none;
+  }
+  .modal {
+    z-index: 1050;
+  }
+  .modal img {
+    -webkit-filter: unset;
+  }
+  .container .row .col-3 img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+  }
+</style>
+<!--
+<div class="row split-row" id="explains-help">
+  <div class="col-12">
+    <h1>Player Guide</h1>
+
+    <h4>Starting out</h4>
+    <p>Wip...</p>
+  </div>
+</div>
+-->
+
+<script type="text/javascript">
+  (() => {
+    document.querySelectorAll("iframe").forEach(function (iframe) {
+      iframe.parentElement.style.overflow = "hidden";
+      iframe.style.pointerEvents = "none";
+
+      iframe.parentElement.addEventListener("mouseenter", function () {
+        iframe.style.pointerEvents = "auto";
+        document.body.style.overflow = "hidden"; // Disable scrolling on hover
+      });
+
+      iframe.parentElement.addEventListener("mouseleave", function () {
+        iframe.style.pointerEvents = "none";
+        document.body.style.overflow = ""; // Enable scrolling when not hovering
+      });
+    });
+  })();
+</script>
+
+<script type="text/javascript">
+  // JavaScript to update modal image when a gallery image is clicked
+  document.querySelectorAll('[data-toggle="modal"]').forEach(function (anchor) {
+    anchor.addEventListener("click", function () {
+      // Get the src of the clicked image
+      var imgSrc = this.querySelector("img").getAttribute("src");
+
+      // Update the src of the modal image
+      var modalImage = document.querySelector("#imageModal img");
+      modalImage.setAttribute("src", imgSrc);
+    });
+  });
+</script>
+
+<style type="text/css">
+  .gallery img{
+     
+      min-width: 110px;
+    
+  }
+  .gallery .col-3 {
+    justify-content: center !important;
+  }
+</style>
