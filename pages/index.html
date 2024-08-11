@@ -13,16 +13,15 @@
     background: url(img/splitter_1.png);
 
     background-repeat: no-repeat;
-    
+
     background-position: center;
     width: 100%;
     min-height: 613px;
-    max-height: 600px;
   }
   .splitter_content_left h3 {
     background-color: red;
-    min-height:40px;
-    line-height:40px;
+    min-height: 40px;
+    line-height: 40px;
   }
   .splitter_content_left_inner {
     margin-left: 50px;
@@ -34,41 +33,82 @@
   }
   @media (max-width: 767px) {
     .splitter_content_left_inner li {
-    margin: 10px;
-    font-size: 16px !important;
+      margin: 10px;
+      font-size: 16px !important;
+    }
+    .splitter_content_left_inner img {
+      display: none;
+    }
   }
-  .splitter_content_left_inner img {
-    display: none;
+  .splitter_content_right {
+    float: right;
   }
+  .make-mutant {
+    font-family: caveat;
+    background: unset;
+    text-align: right;
+  }
+  .make-mutant h5 {
+    font-family: caveat;
+    background: unset;
+    color: white;
+    font-size: 36px;
+  }
+  .make-mutant a {
+    font-family: caveat;
+    background: unset;
+    color: white;
   }
 </style>
 
 <div class="row">
   <div class="splitter_1">
     <div class="splitter_content_left">
-        <h3>Survive, Recruit, Raid, Build, Defend</h3>
-
-        <div class="splitter_content_left_inner">
-            <h4>Welcome to the desert...</h4>
-            <ul>
-                <li>Start off with nothing and figure out how to survive</li>
-                <li>Hunt the wildlife to gain hides and raw foods</li>
-                <li>Build up your skills by doing actions in the game</li>
-                <li>Learn through pain, gain skills and knowledge everytime you lose</li>
-                <li>Huge open world map 4 million tiles seamless with no loading</li>
-                <li>Tons of towns and factions to invade, trade with or become allies</li>
-                <li>Economy based world even chopping down a tree effects the nearest town</li>
-                <li><a style="text-decoration: underline;" href="https://discord.gg/CmSFawGNeU">Click here to join the Pre-Alpha!</a></li>
-            </ul>
-            <img class="flex" style="width: unset" src="img/logo.png" width="150px" height="150"/>
+      <h3>Survive, Recruit, Raid, Build, Defend</h3>
+      <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 p-4 pl-5">
+          <h4>Welcome to the desert...</h4>
+          <ul>
+            <li>Start off with nothing and figure out how to survive</li>
+            <li>Hunt the wildlife to gain hides and raw foods</li>
+            <li>Build up your skills by doing actions in the game</li>
+            <li>
+              Learn through pain, gain skills and knowledge everytime you lose
+            </li>
+            <li>
+              Huge open world map 4 million tiles seamless with no loading
+            </li>
+            <li>
+              Tons of towns and factions to invade, trade with or become allies
+            </li>
+            <li>
+              Economy based world even chopping down a tree effects the nearest
+              town
+            </li>
+            <li>
+              <a
+                style="text-decoration: underline"
+                href="https://discord.gg/CmSFawGNeU"
+                >Click here to join the Pre-Alpha!</a
+              >
+            </li>
+          </ul>
+          <img
+            class="flex"
+            style="width: unset"
+            src="img/logo.png"
+            width="150px"
+            height="150"
+          />
         </div>
+        <div class="make-mutant col-lg-6 col-sm-12 p-2 pr-5">
+          <h5>Make Your Mutant</h5>
+          <a href="mutant-maker.html">Click here >>></a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<p>
-    <a href="https://discord.gg/CmSFawGNeU">Click here to join the Pre-Alpha!</a>
-  </p>
 
 <div class="row">
   <div class="col-12 d-flex justify-content-center">
@@ -215,7 +255,9 @@
     really early on in development
   </p>
   <p>
-    <a href="https://discord.gg/CmSFawGNeU">Click here to join the Pre-Alpha!</a>
+    <a href="https://discord.gg/CmSFawGNeU"
+      >Click here to join the Pre-Alpha!</a
+    >
   </p>
 
   <div class="container-fluid justify-content-center">

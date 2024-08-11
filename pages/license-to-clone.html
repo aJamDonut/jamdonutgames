@@ -1,90 +1,265 @@
 <style type="text/css">
-    h1,
-    h2,
-    h3 {
-      background: url(img/h3-text-banner.png);
-      background-size: 100%;
-      background-position: right;
-  
-      text-align: center;
-      margin-bottom: 25px;
-    }
-    .splitter_1 {
-      background: url(img/splitter_1.png);
-  
-      background-repeat: no-repeat;
-      
-      background-position: center;
-      width: 100%;
-      min-height: 613px;
-      max-height: 600px;
-    }
-    .splitter_content_left h3 {
-      background-color: red;
-      min-height:40px;
-      line-height:40px;
-    }
-    .splitter_content_left_inner {
-      margin-left: 50px;
-      margin-top: 50px;
-    }
+  h1,
+  h2,
+  h3 {
+    background: url(img/h3-text-banner.png);
+    background-size: 100%;
+    background-position: right;
+
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .splitter_1 {
+    background: url(img/splitter_1.png);
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+    width: 100%;
+    min-height: 613px;
+  }
+  .splitter_content_left h3 {
+    background-color: red;
+    min-height: 40px;
+    line-height: 40px;
+  }
+  .splitter_content_left_inner {
+    margin-left: 50px;
+    margin-top: 50px;
+  }
+  .splitter_content_left_inner li {
+    margin: 10px;
+    font-size: 20px !important;
+  }
+  @media (max-width: 767px) {
     .splitter_content_left_inner li {
-      margin: 10px;
-      font-size: 20px !important;
-    }
-    @media (max-width: 767px) {
-      .splitter_content_left_inner li {
       margin: 10px;
       font-size: 16px !important;
     }
     .splitter_content_left_inner img {
       display: none;
     }
-    }
-  </style>
-  
-  <div class="row">
-    <div class="splitter_1">
-      <div class="splitter_content_left">
-          <h3>Survive, Recruit, Raid, Build, Defend</h3>
-  
-          <div class="splitter_content_left_inner">
-              <h4>Welcome to the desert...</h4>
-              <ul>
-                  <li>Start off with nothing and figure out how to survive</li>
-                  <li>Hunt the wildlife to gain hides and raw foods</li>
-                  <li>Build up your skills by doing actions in the game</li>
-                  <li>Learn through pain, gain skills and knowledge everytime you lose</li>
-                  <li>Huge open world map 4 million tiles seamless with no loading</li>
-                  <li>Tons of towns and factions to invade, trade with or become allies</li>
-                  <li>Economy based world even chopping down a tree effects the nearest town</li>
-                  <li><a style="text-decoration: underline;" href="https://discord.gg/CmSFawGNeU">Click here to join the Pre-Alpha!</a></li>
-              </ul>
-              <img class="flex" style="width: unset" src="img/logo.png" width="150px" height="150"/>
-          </div>
+  }
+  .splitter_content_right {
+    float: right;
+  }
+  .make-mutant {
+    font-family: caveat;
+    background: unset;
+    text-align: right;
+  }
+  .make-mutant h5 {
+    font-family: caveat;
+    background: unset;
+    color: white;
+    font-size: 36px;
+  }
+  .make-mutant a {
+    font-family: caveat;
+    background: unset;
+    color: white;
+  }
+</style>
+
+<div class="row">
+  <div class="splitter_1">
+    <div class="splitter_content_left">
+      <h3>Survive, Recruit, Raid, Build, Defend</h3>
+      <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-12 p-4 pl-5">
+          <h4>Welcome to the desert...</h4>
+          <ul>
+            <li>Start off with nothing and figure out how to survive</li>
+            <li>Hunt the wildlife to gain hides and raw foods</li>
+            <li>Build up your skills by doing actions in the game</li>
+            <li>
+              Learn through pain, gain skills and knowledge everytime you lose
+            </li>
+            <li>
+              Huge open world map 4 million tiles seamless with no loading
+            </li>
+            <li>
+              Tons of towns and factions to invade, trade with or become allies
+            </li>
+            <li>
+              Economy based world even chopping down a tree effects the nearest
+              town
+            </li>
+            <li>
+              <a
+                style="text-decoration: underline"
+                href="https://discord.gg/CmSFawGNeU"
+                >Click here to join the Pre-Alpha!</a
+              >
+            </li>
+          </ul>
+          <img
+            class="flex"
+            style="width: unset"
+            src="img/logo.png"
+            width="150px"
+            height="150"
+          />
+        </div>
+        <div class="make-mutant col-lg-6 col-sm-12 p-2 pr-5">
+          <h5>Make Your Mutant</h5>
+          <a href="mutant-maker.html">Click here >>></a>
+        </div>
       </div>
     </div>
   </div>
-  
-  <p>
-      <a href="https://discord.gg/CmSFawGNeU">Click here to join the Pre-Alpha!</a>
-    </p>
-  
-  <div class="row">
-    <div class="col-12 d-flex justify-content-center">
-      <iframe
-        width="1000"
-        height="450"
-        src="https://www.youtube.com/embed/XHP26aGOWLs?si=WwU4uV6xd1Cp6aPe"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-      ></iframe>
+</div>
+
+<div class="row">
+  <div class="col-12 d-flex justify-content-center">
+    <iframe
+      width="1000"
+      height="450"
+      src="https://www.youtube.com/embed/XHP26aGOWLs?si=WwU4uV6xd1Cp6aPe"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen
+    ></iframe>
+  </div>
+</div>
+<br />
+<div class="container-fluid justify-content-center">
+  <div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
+    <div class="row justify-content-center">
+      <div class="col-12 justify-content-center">
+        <div class="d-none d-lg-block">
+          <iframe
+            src="https://store.steampowered.com/widget/964090/"
+            frameborder="0"
+            width="700"
+            height="190"
+          ></iframe>
+        </div>
+        <div class="d-none d-sm-block d-lg-none">
+          <iframe
+            src="https://store.steampowered.com/widget/964090/"
+            frameborder="0"
+            width="500"
+            height="190"
+          ></iframe>
+        </div>
+        <div class="d-block d-sm-none">
+          <iframe
+            style="min-width: 100%"
+            src="https://store.steampowered.com/widget/964090/"
+            frameborder="0"
+            width="400"
+            height="190"
+          ></iframe>
+        </div>
+      </div>
     </div>
   </div>
-  <br />
+</div>
+
+<div class="comp-whole">
+  <h3>ABOUT THE GAME</h3>
+  <p>
+    You begin by picking the race of your choice which will wake up on a desert
+    planet. Pick between; clone, robot, cyborg or a hardened alien race, each
+    starts with different stats.
+  </p>
+
+  <p>
+    You start out with gathering resources, talking to NPC's and finding out
+    about the different factions present on the planet. You can choose which
+    factions to help, join or betray.
+  </p>
+
+  <p>
+    After exploring for some time and helping factions you find blueprints to
+    craft custom clones and robots, which require lots of resources and a clone
+    vat to craft.
+  </p>
+
+  <p>
+    You explore for more resources, defeating weak foes who posess more valuable
+    resources, armours and weapons. Destroying their corpses let's you gather
+    much needed Mulch faster.
+  </p>
+  <img src="img/base.jpg" />
+  <p>
+    After some time you have enough resources to start your own town, you begin
+    by placing a few building and the crafting items you need to make clones,
+    using your acquired Mulch
+  </p>
+
+  <p>
+    You start growing some clones and crafting robots to help you progress in
+    the games harder areas. After some time you have a couple clone body guards
+    and some worker robots in your town.
+  </p>
+  <p>
+    You visit local towns and factions to find out about their bounties, other
+    leaders and bosses who's brains hold high value. You track them down and
+    kill them to steal their brain and return it for the bounty at a police
+    station, or keep it for your own use.
+  </p>
+
+  <p>
+    With your power and resources you begin to grow your town into a city, you
+    are essentially another faction on the map.
+  </p>
+  <p>
+    You begin exploring the harder areas of the game, aided by your home grown
+    clone/robot allies. You are reminded of the factions stopping progress on
+    the planet you find yourself.
+  </p>
+  <p>
+    You have a choice, who will you help with your power. There are end game
+    "missions" to complete for each of the 3 main factions.
+  </p>
+
+  <img src="img/bigbg2.png" />
+
+  <h3>Features</h3>
+  <ul>
+    <li>
+      Free roam adventuring on a desert planet with a mixture of wild west, sci
+      fi and fantasy
+    </li>
+    <li>
+      Gathering and crafting of much required items, such as clone vats, weapons
+      and armour
+    </li>
+    <li>Ranged, Elemental and Melee based combat between large factions</li>
+    <li>
+      Light dialog system with multiple options leading to different ways to get
+      otherwise progress-locked content
+    </li>
+    <li>
+      Place your own city on the map and grow clones and robots to do the heavy
+      work you don't want to do
+    </li>
+    <li>
+      Sell the high value items you come across to vendors, or start your own
+      supply chain selling to different towns
+    </li>
+    <li>
+      Grow clones and brains to specifically behave how you want. Gather more
+      brains to learn different traits
+    </li>
+  </ul>
+
+  <h3>Play for free! - Join our pre-alpha testing</h3>
+
+  <p>
+    Play for free before we hit early access, you will find many bugs as this is
+    really early on in development
+  </p>
+  <p>
+    <a href="https://discord.gg/CmSFawGNeU"
+      >Click here to join the Pre-Alpha!</a
+    >
+  </p>
+
   <div class="container-fluid justify-content-center">
     <div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
       <div class="row justify-content-center">
@@ -118,138 +293,4 @@
       </div>
     </div>
   </div>
-  
-  <div class="comp-whole">
-    <h3>ABOUT THE GAME</h3>
-    <p>
-      You begin by picking the race of your choice which will wake up on a desert
-      planet. Pick between; clone, robot, cyborg or a hardened alien race, each
-      starts with different stats.
-    </p>
-  
-    <p>
-      You start out with gathering resources, talking to NPC's and finding out
-      about the different factions present on the planet. You can choose which
-      factions to help, join or betray.
-    </p>
-  
-    <p>
-      After exploring for some time and helping factions you find blueprints to
-      craft custom clones and robots, which require lots of resources and a clone
-      vat to craft.
-    </p>
-  
-    <p>
-      You explore for more resources, defeating weak foes who posess more valuable
-      resources, armours and weapons. Destroying their corpses let's you gather
-      much needed Mulch faster.
-    </p>
-    <img src="img/base.jpg" />
-    <p>
-      After some time you have enough resources to start your own town, you begin
-      by placing a few building and the crafting items you need to make clones,
-      using your acquired Mulch
-    </p>
-  
-    <p>
-      You start growing some clones and crafting robots to help you progress in
-      the games harder areas. After some time you have a couple clone body guards
-      and some worker robots in your town.
-    </p>
-    <p>
-      You visit local towns and factions to find out about their bounties, other
-      leaders and bosses who's brains hold high value. You track them down and
-      kill them to steal their brain and return it for the bounty at a police
-      station, or keep it for your own use.
-    </p>
-  
-    <p>
-      With your power and resources you begin to grow your town into a city, you
-      are essentially another faction on the map.
-    </p>
-    <p>
-      You begin exploring the harder areas of the game, aided by your home grown
-      clone/robot allies. You are reminded of the factions stopping progress on
-      the planet you find yourself.
-    </p>
-    <p>
-      You have a choice, who will you help with your power. There are end game
-      "missions" to complete for each of the 3 main factions.
-    </p>
-  
-    <img src="img/bigbg2.png" />
-  
-    <h3>Features</h3>
-    <ul>
-      <li>
-        Free roam adventuring on a desert planet with a mixture of wild west, sci
-        fi and fantasy
-      </li>
-      <li>
-        Gathering and crafting of much required items, such as clone vats, weapons
-        and armour
-      </li>
-      <li>Ranged, Elemental and Melee based combat between large factions</li>
-      <li>
-        Light dialog system with multiple options leading to different ways to get
-        otherwise progress-locked content
-      </li>
-      <li>
-        Place your own city on the map and grow clones and robots to do the heavy
-        work you don't want to do
-      </li>
-      <li>
-        Sell the high value items you come across to vendors, or start your own
-        supply chain selling to different towns
-      </li>
-      <li>
-        Grow clones and brains to specifically behave how you want. Gather more
-        brains to learn different traits
-      </li>
-    </ul>
-  
-    <h3>Play for free! - Join our pre-alpha testing</h3>
-  
-    <p>
-      Play for free before we hit early access, you will find many bugs as this is
-      really early on in development
-    </p>
-    <p>
-      <a href="https://discord.gg/CmSFawGNeU">Click here to join the Pre-Alpha!</a>
-    </p>
-  
-    <div class="container-fluid justify-content-center">
-      <div class="col-sm-12 col-md-12 col-12 d-flex justify-content-center">
-        <div class="row justify-content-center">
-          <div class="col-12 justify-content-center">
-            <div class="d-none d-lg-block">
-              <iframe
-                src="https://store.steampowered.com/widget/964090/"
-                frameborder="0"
-                width="700"
-                height="190"
-              ></iframe>
-            </div>
-            <div class="d-none d-sm-block d-lg-none">
-              <iframe
-                src="https://store.steampowered.com/widget/964090/"
-                frameborder="0"
-                width="500"
-                height="190"
-              ></iframe>
-            </div>
-            <div class="d-block d-sm-none">
-              <iframe
-                style="min-width: 100%"
-                src="https://store.steampowered.com/widget/964090/"
-                frameborder="0"
-                width="400"
-                height="190"
-              ></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
+</div>
