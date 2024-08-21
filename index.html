@@ -542,7 +542,7 @@ a:visited {
           
           
           <div class="d-none d-sm-block" style="position:absolute;right:15px;top:-100px">
-            <a href="https://discord.gg/CmSFawGNeU" target="_blank" title="Join the discord"><img class="float-right" height="90px" src="img/disco.png"></a>
+            <a id="join_discord" href="https://discord.gg/CmSFawGNeU" target="_blank" title="Join the discord"><img class="float-right" height="90px" src="img/disco.png"></a>
           </div>
 
           <div class="explainer p-4 min-vh-100">
@@ -684,6 +684,7 @@ a:visited {
       <div class="col-12 justify-content-center">
         <div class="d-none d-lg-block">
           <iframe
+            class="steamWindow"
             src="https://store.steampowered.com/widget/964090/"
             frameborder="0"
             width="700"
@@ -692,6 +693,7 @@ a:visited {
         </div>
         <div class="d-none d-sm-block d-lg-none">
           <iframe
+            class="steamWindow"
             src="https://store.steampowered.com/widget/964090/"
             frameborder="0"
             width="500"
@@ -700,6 +702,7 @@ a:visited {
         </div>
         <div class="d-block d-sm-none">
           <iframe
+            class="steamWindow"
             style="min-width: 100%"
             src="https://store.steampowered.com/widget/964090/"
             frameborder="0"
@@ -819,6 +822,7 @@ a:visited {
         <div class="col-12 justify-content-center">
           <div class="d-none d-lg-block">
             <iframe
+              class="steamWindow"
               src="https://store.steampowered.com/widget/964090/"
               frameborder="0"
               width="700"
@@ -827,6 +831,7 @@ a:visited {
           </div>
           <div class="d-none d-sm-block d-lg-none">
             <iframe
+              class="steamWindow"
               src="https://store.steampowered.com/widget/964090/"
               frameborder="0"
               width="500"
@@ -835,6 +840,7 @@ a:visited {
           </div>
           <div class="d-block d-sm-none">
             <iframe
+              class="steamWindow"
               style="min-width: 100%"
               src="https://store.steampowered.com/widget/964090/"
               frameborder="0"
@@ -929,5 +935,32 @@ a:visited {
       gtag("js", new Date());
       gtag("config", "G-0K8J84CPV7");
     </script>
+    <script>
+
+      function track(event){
+        gtag('event', event);
+        rdt('track', event);
+      }
+      
+      $(document).ready(()=>{
+
+        const joinDiscord = document.getElementById('join_discord');
+        joinDiscord.addEventListener('click', () => {
+          track("join_discord")
+        });
+
+        let timer = null;
+        //Hacky timer for wishlists
+        $(".steamWindow").hover(()=>{
+        timer = setTimeout(()=>{
+          track("click_wishlist")
+        }, 2000)
+        }, ()=>{
+          clearTimeout(timer)
+        })
+        });
+      
+
+  </script>
   </body>
 </html>
