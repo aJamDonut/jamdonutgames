@@ -643,6 +643,7 @@ a:visited {
             </li>
             <li>
               <a
+              class="testingLink"
                 style="text-decoration: underline"
                 href="https://discord.gg/CmSFawGNeU"
                 >Click here to join the Pre-Alpha!</a
@@ -814,7 +815,7 @@ a:visited {
     really early on in development
   </p>
   <p>
-    <a href="https://discord.gg/CmSFawGNeU"
+    <a class="testingLink" href="https://discord.gg/CmSFawGNeU"
       >Click here to join the Pre-Alpha!</a
     >
   </p>
@@ -951,6 +952,10 @@ a:visited {
         joinDiscord.addEventListener('click', () => {
           track("join_discord")
         });
+
+        $(".testingLink").click(()=>{
+          track("join_discord_tester")
+        })
 
         let timer = null;
         //Hacky timer for wishlists
