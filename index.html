@@ -25,6 +25,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Grey+Qo&family=Holtwood+One+SC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -267,6 +270,45 @@ a:visited {
       rdt("init", "t2_k9633");
       rdt("track", "PageVisit");
     </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-0K8J84CPV7");
+    </script>
+    <script>
+
+      function track(event){
+        gtag('event', event);
+        rdt('track', event);
+      }
+      
+      $(document).ready(()=>{
+
+        const joinDiscord = document.getElementById('join_discord');
+        joinDiscord.addEventListener('click', () => {
+          track("join_discord")
+        });
+
+        $(".testingLink").click(()=>{
+          track("join_discord_tester")
+        })
+
+        let timer = null;
+        //Hacky timer for wishlists
+        $(".steamWindow").hover(()=>{
+        timer = setTimeout(()=>{
+          track("click_wishlist")
+        }, 2000)
+        }, ()=>{
+          clearTimeout(timer)
+        })
+        });
+      
+
+  </script>
     <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
     <!-- End Reddit Pixel -->
   </head>
@@ -640,6 +682,7 @@ a:visited {
             </li>
             <li>
               <a
+              class="testingLink"
                 style="text-decoration: underline"
                 href="https://discord.gg/CmSFawGNeU"
                 >Click here to join the Pre-Alpha!</a
@@ -811,7 +854,7 @@ a:visited {
     really early on in development
   </p>
   <p>
-    <a href="https://discord.gg/CmSFawGNeU"
+    <a class="testingLink" href="https://discord.gg/CmSFawGNeU"
       >Click here to join the Pre-Alpha!</a
     >
   </p>
@@ -927,40 +970,7 @@ a:visited {
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-0K8J84CPV7"
     ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-0K8J84CPV7");
-    </script>
-    <script>
-
-      function track(event){
-        gtag('event', event);
-        rdt('track', event);
-      }
-      
-      $(document).ready(()=>{
-
-        const joinDiscord = document.getElementById('join_discord');
-        joinDiscord.addEventListener('click', () => {
-          track("join_discord")
-        });
-
-        let timer = null;
-        //Hacky timer for wishlists
-        $(".steamWindow").hover(()=>{
-        timer = setTimeout(()=>{
-          track("click_wishlist")
-        }, 2000)
-        }, ()=>{
-          clearTimeout(timer)
-        })
-        });
-      
-
-  </script>
+    
+    
   </body>
 </html>
