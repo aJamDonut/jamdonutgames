@@ -305,18 +305,18 @@ a:visited {
 
         const joinDiscord = document.getElementById('join_discord');
         joinDiscord.addEventListener('click', () => {
-          track("join_discord")
+          track("Lead")
         });
 
         $(".testingLink").click(()=>{
-          track("join_discord_tester")
+          track("SignUp")
         })
 
         let timer = null;
         //Hacky timer for wishlists
         $(".steamWindow").hover(()=>{
         timer = setTimeout(()=>{
-          track("click_wishlist")
+          track("AddToWishlist")
         }, 2000)
         }, ()=>{
           clearTimeout(timer)
