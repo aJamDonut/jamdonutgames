@@ -1,9 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JamDonut Games</title>
+    <!-- Start cookieyes banner -->
+    <script
+      id="cookieyes"
+      type="text/javascript"
+      src="https://cdn-cookieyes.com/client_data/51743891c4f151536b6895a7/script.js"
+    ></script>
+    <!-- End cookieyes banner -->
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <title>
+      Firedup - Jam Donut Games - Free Tycoon, Simulation and Survival games in
+      the browser
+    </title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -67,7 +87,9 @@
         color: black;
         background-color: #f4b225;
       }
-      a, a:visited, b {
+      a,
+      a:visited,
+      b {
         color: #f4b225;
       }
       a:visited.btn {
@@ -84,12 +106,11 @@
         background-color: #4b360987;
         background-size: cover;
         background-position: left;
-        
       }
       .border-it {
         padding-top: 50px;
         margin-top: 50px;
-        border-top: 2px solid #f4b225; 
+        border-top: 2px solid #f4b225;
       }
       .timeline-table tr {
         border-bottom: 1px solid #f4b225;
@@ -101,12 +122,71 @@
         padding: 10px;
       }
     </style>
+    <!-- Reddit Pixel -->
+    <script>
+      !(function (w, d) {
+        if (!w.rdt) {
+          var p = (w.rdt = function () {
+            p.sendEvent
+              ? p.sendEvent.apply(p, arguments)
+              : p.callQueue.push(arguments);
+          });
+          p.callQueue = [];
+          var t = d.createElement("script");
+          (t.src = "https://www.redditstatic.com/ads/pixel.js"), (t.async = !0);
+          var s = d.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(t, s);
+        }
+      })(window, document);
+      rdt("init", "t2_k9633");
+      rdt("track", "PageVisit");
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-0K8J84CPV7");
+    </script>
+    <script>
+      function track(event) {
+        gtag("event", event);
+        rdt("track", event);
+      }
+
+      $(document).ready(() => {
+        const joinDiscord = document.getElementById("join_discord");
+        joinDiscord.addEventListener("click", () => {
+          track("Lead");
+        });
+
+        $(".testingLink").click(() => {
+          track("SignUp");
+        });
+
+        let timer = null;
+        //Hacky timer for wishlists
+        $(".steamWindow").hover(
+          () => {
+            timer = setTimeout(() => {
+              track("AddToWishlist");
+            }, 2000);
+          },
+          () => {
+            clearTimeout(timer);
+          }
+        );
+      });
+    </script>
+    <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
+    <!-- End Reddit Pixel -->
   </head>
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container">
-        <a class="navbar-brand" href="#"
+        <a class="navbar-brand" href="index.html"
           ><img src="img/jamdonutgames-logo.png"
         /></a>
         <button
@@ -276,14 +356,21 @@
               <li><a href="index.html">Home</a></li>
               <li><a href="about.html">About</a></li>
               <li><a href="license-to-clone.html">Games</a></li>
-              <li><a href="https://discord.gg/CmSFawGNeU" target="_blank">Discord</a></li>
+              <li>
+                <a href="https://discord.gg/CmSFawGNeU" target="_blank"
+                  >Discord</a
+                >
+              </li>
               <li><a href="about.html#contact">Contact</a></li>
             </ul>
           </div>
           <div class="col-md-5">
             <h4>Latest news</h4>
-            <p>We're looking for playtesters! If want to apply please <a href="https://discord.gg/CmSFawGNeU">click here!</a> and message mod!</p>
-            
+            <p>
+              We're looking for playtesters! If want to apply please
+              <a href="https://discord.gg/CmSFawGNeU">click here!</a> and
+              message mod!
+            </p>
           </div>
           <div class="col-md-4">
             <h4>Get in touch!</h4>
@@ -297,5 +384,34 @@
       </div>
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      (() => {
+        console.log("rUNO");
+        function bindClick(name) {
+          document.getElementById(name).addEventListener("click", function () {
+            var sliderSection = document.getElementById("sliderSection");
+            console.log("Cliko", sliderSection.style.display);
+
+            if (
+              !sliderSection.style.display ||
+              sliderSection.style.display === "none"
+            ) {
+              sliderSection.style.display = "block";
+            } else {
+              sliderSection.style.display = "none";
+            }
+          });
+        }
+
+        bindClick("toggleSliderBtn");
+        bindClick("toggleSliderBtn2");
+      })();
+    </script>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-0K8J84CPV7"
+    ></script>
   </body>
 </html>
