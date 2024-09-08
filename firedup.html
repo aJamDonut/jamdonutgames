@@ -1,615 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Start cookieyes banner -->
-    <script
-      id="cookieyes"
-      type="text/javascript"
-      src="https://cdn-cookieyes.com/client_data/51743891c4f151536b6895a7/script.js"
-    ></script>
-    <!-- End cookieyes banner -->
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-
-    <!-- Fonts -->
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Grey+Qo&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
- <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-      crossorigin="anonymous"
-    ></script>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Black+And+White+Picture&family=Grey+Qo&family=Holtwood+One+SC&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JamDonut Games</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Sigmar+One|Titillium+Web&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
       rel="stylesheet"
     />
-    <title>Firedup - Jam Donut Games - Free Tycoon, Simulation and Survival games in the browser</title>
-
-    <style type="text/css">
-      #sliderSection {
-        display: none;
-        padding-bottom: 100px;
-        top: 0;
-        width: 100%;
-        z-index: 1000;
-        background-color: #000e06
-      }
-      .btn-primary:hover {
-          color: #fff;
-          background-color: #3b6f0c;
-          border-color: #07650e;
-          box-shadow: 0 0 6px 6px rgb(27 181 27 / 85%);
-      }
-      .btn-primary {
-          color: #fff;
-          background-color: #3b6f0c !important;
-          border-color: #07650e  !important;
-      }
-      .carousel-inner {
-        background-color: black;
-        background: url("img/scuff.png");
-      }
-      .carousel-inner p, .carousel-inner li{
-        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
-      }
-      .btn {
-        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.7);
-      
-      }
-      .carousel-item p {
-        color: rgb(175, 175, 175);
-      }
-      html,
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
       body {
-        height: 100%;
-        background-color: #313131;
-      }
-      .holtwood-one-sc-regular {
-        font-family: "Holtwood One SC", serif;
-        font-weight: 300;
-        font-style: normal;
-      }
-
-      h1,
-      h2,
-      h3 {
-        font-family: "Holtwood One SC", serif;
-        color: #b6b6b6;
-        margin: 0;
-        line-height: 1;
-        margin-top: 15px;
-        font-style: normal;
-        font-weight: 100;
-      }
-      h4 {
-        font-family: "Holtwood One SC", serif;
-        color: #7a7a7a;
-        margin: 0;
-        line-height: 1;
-        margin-top: 15px;
-        font-style: normal;
-        font-weight: 100;
-      }
-      #content-wrapper p,
-      #content-wrapper li {
-        font-family: "Titillium Web", sans-serif;
-        font-weight: bold;
-        font-size: 15px;
-        color: #a4a4a4;
-      }
-      .explainer img {
-        -webkit-filter: opacity(60%);
-      }
-      .explainer {
-        background: url("img/scuff.png");
-        background-repeat:repeat;
-        background-position: bottom;
-        background-size: 100%;
-        background-blend-mode: exclusion;
-      }
-      #top-header {
-        background: url("img/scuff.png");
-        background-repeat:repeat;
-        background-position: top;
-        background-size: 100%;
-        background-color: rgb(86, 86, 86);
-        background-blend-mode:difference
-      }
-      footer {
-        background: url("img/scuff.png");
-        background-repeat:repeat;
-        background-position: top;
-        background-size: 100%;
-        background-color: rgb(86, 86, 86);
-        opacity: 50%;
-      }
-      #page-wrapper {
-        z-index: 1;
-      }
-      #header-bg {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        z-index: 0;
-        background: url(img/bigger.png);
-        background-position: top;
-        background-size: 40%;
-        filter: opacity(30%);
-        -webkit-filter: opacity(30%);
-        
-      }
-      #content-wrapper,
-      #page-footer {
-        background-color: #3131319e;
-
-        
-        z-index: 1;
-      }
-      .social-top-right {
-        background-color: #5d5d5d7a;
-        padding: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-      }
-      .white-trans-bg {
-        width: 100%;
-        background-color: #ffffff7a;
-        padding: 10px;
-      }
-      .explainer {
-        background-color: #3f3f3f;
-      }
-      .btn-primary {
-        color: #fff;
-        background-color: #2e2e2e;
-        border-color: #5a5a5a;
-      }
-      footer {
-        background-color: #4b4b4b;
-        color: #b6b6b6;
-        padding: 10px 0;
-        z-index: 1;
-      }
-      footer a {
-        color: #b6b6b6;
-      }
-      .explainer img {
-        width: 100%;
-      }
-      .container {
-        width: 100%;
-      }
-
-      .nav-item {
-        margin-right: 5px; /* Adjust the value as needed */
-      }
-      #navigation {
-        z-index: 100;
-        
-      }
-      #carouselExampleIndicators {
-        top: 50px;
-      }
-      #toggleSliderBtn2 {
-        z-index: 100;
-        background: url(img/tv1.png);
-        width: 164px;
-        height: 85px;
-        border: none;
-        background-position: bottom;
-        font-family: monospace;
-        background-color: #117011;
-        box-shadow: 0 0 37px 12px rgb(27 181 27 / 85%);
-      }
-      #toggleSliderBtn {
-        background: url(img/tv2.png);
-        width: 164px;
-        height: 85px;
-        border: none;
-        background-position: bottom;
-        font-family: monospace;
-      }
-      .black-and-white-picture-regular {
-        font-family: "Black And White Picture", system-ui;
+        font-family: "Poppins", sans-serif;
         font-weight: 400;
         font-style: normal;
-        font-size: 50px;
+        background-color: #3c3c3c;
       }
-      @media (max-width: 767px) {
-    img.d-block {
-        margin: auto;
-        float: none !important;
-    }
-}
-a:hover {
-  color: green;
-}
-a:visited {
-  color: unset;
-}
-.btn:hover {
-  cursor: pointer;
-}
+      .navbar {
+        background-color: #333;
+      }
+      .navbar-nav .nav-link {
+        color: white !important;
+      }
+      .hero-section {
+        background-color: #4925f4;
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .wishlist-btn {
+        background-color: #b83a3a;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        border-radius: 5px;
+      }
+      .main-content {
+        background-color: #3c3c3c;
+        color: white;
+        padding: 40px;
+      }
+      .btn {
+        border-radius: 0px;
+        border: 1px solid #f4b225;
+      }
+      .btn:hover {
+        background-color: #3c3c3c;
+        border: 1px solid #f4b225;
+      }
+      .btn-custom {
+        background-color: #f4b225;
+        color: black;
 
-
+        border-radius: none;
+        padding: 10px 20px;
+      }
+      .footer-section {
+        padding: 30px;
+      }
+      .offset-color-1 {
+        color: black;
+        background-color: #f4b225;
+      }
+      a, a:visited, b {
+        color: #f4b225;
+      }
+      a:visited.btn {
+        color: black;
+      }
+      .offset-color-1 a {
+        color: black;
+      }
     </style>
-
-    <!-- Reddit Pixel -->
-    <script>
-      !(function (w, d) {
-        if (!w.rdt) {
-          var p = (w.rdt = function () {
-            p.sendEvent
-              ? p.sendEvent.apply(p, arguments)
-              : p.callQueue.push(arguments);
-          });
-          p.callQueue = [];
-          var t = d.createElement("script");
-          (t.src = "https://www.redditstatic.com/ads/pixel.js"), (t.async = !0);
-          var s = d.getElementsByTagName("script")[0];
-          s.parentNode.insertBefore(t, s);
-        }
-      })(window, document);
-      rdt("init", "t2_k9633");
-      rdt("track", "PageVisit");
-    </script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
+    <style type="text/css">
+      .ltc-bg {
+        background: url(img/base.jpg);
+        background-blend-mode: difference;
+        background-color: #4b360987;
+        background-size: cover;
+        background-position: left;
+        
       }
-      gtag("js", new Date());
-      gtag("config", "G-0K8J84CPV7");
-    </script>
-    <script>
-
-      function track(event){
-        gtag('event', event);
-        rdt('track', event);
+      .border-it {
+        padding-top: 50px;
+        margin-top: 50px;
+        border-top: 2px solid #f4b225; 
       }
-      
-      $(document).ready(()=>{
-
-        const joinDiscord = document.getElementById('join_discord');
-        joinDiscord.addEventListener('click', () => {
-          track("Lead")
-        });
-
-        $(".testingLink").click(()=>{
-          track("SignUp")
-        })
-
-        let timer = null;
-        //Hacky timer for wishlists
-        $(".steamWindow").hover(()=>{
-        timer = setTimeout(()=>{
-          track("AddToWishlist")
-        }, 2000)
-        }, ()=>{
-          clearTimeout(timer)
-        })
-        });
-      
-
-  </script>
-    <!-- DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER -->
-    <!-- End Reddit Pixel -->
+      .timeline-table tr {
+        border-bottom: 1px solid #f4b225;
+      }
+      .timeline-table td {
+        padding: 20px;
+      }
+      .feature-list li {
+        padding: 10px;
+      }
+    </style>
   </head>
   <body>
-    <div id="navigation">
-      <div id="sliderSection" class="container col-12">
-        <a
-          id="toggleSliderBtn2"
-          href="#"
-          class="btn"
-          style="
-            color: white;
-            position: absolute;
-            top: 0px;
-            left: 50%;
-            transform: translateX(-50%);
-          "
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          ><img src="img/jamdonutgames-logo.png"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          HIDE
-      </a>
-        <div
-          id="carouselExampleIndicators"
-          class="carousel slide"
-          data-ride="carousel"
-        >
-        <div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <div class="row no-gutters">
-                <div class="col-md-6">
-                  <img
-                    class="d-block w-90 float-right"
-                    src="img/500x500-ltc.png"
-                    alt="Second slide"
-                  />
-                </div>
-                <div class="col-md-6 d-flex align-items-center">
-                  <div class="column pl-4">
-                    <h2 class="font-weight-bold">License To Clone</h2><br />
-                      <p>Survive a huge seamless open world, recruit, complete bounties and overcome factions</p>
-                        <p class="mb-0">
-
-                        
-
-                        <ul style="color: rgb(93, 93, 93);">
-
-                          <li>Survive a huge open world</li>
-                          <li>Research new technology</li>
-                          <li>Craft items to aid in your survival</li>
-                          <li>Hunt or tame wild animals</li>
-                          <li>Recruit new characters into your squad</li>
-                          <li>Complete hard bounties for big cash gains</li>
-
-                        </ul>
-                        </p>
-                        
-                        <p class="mb-0">
-                          <a href="license-to-clone.html" class=" btn btn-primary">Learn More!</a>
-                        </p>
-                        <p></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="carousel-item">
-              <div class="row no-gutters">
-                <div class="col-md-6">
-                  <img
-                    class="d-block w-90 float-right"
-                    src="img/500x500-dw.png"
-                    alt="Second slide"
-                  />
-                </div>
-
-                
-                <div class="col-md-6 d-flex align-items-center">
-                  <div class="column pl-4">
-                    <h2 class="font-weight-bold">DeadWorld</h2><br />
-                      <p>Tiny survival game in your browser!</p>
-                        <p class="mb-0">
-
-                        
-
-                        <ul style="color: rgb(93, 93, 93);">
-
-                          <li>Fight wild animals for their hides</li>
-                          <li>Visit local shops to trade</li>
-                          <li>Hire new recruits to help you</li>
-                          <li>Gather resources to build and craft</li>
-                          <li>Construct your base to store and fabricate items</li>
-                          <li>Watch out for the wolves... And the cats... And the rest...</li>
-
-                        </ul>
-                        </p>
-                        
-                        <p class="mb-0">
-                          <a href="deadworld.html" class=" btn btn-primary">Play Now!</a>
-                        </p>
-                        <p></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-
-            <div class="carousel-item">
-              <div class="row no-gutters">
-                <div class="col-md-6">
-                  <img
-                    class="d-block w-90 float-right"
-                    src="img/500x500-ab.png"
-                    alt="Second slide"
-                  />
-                </div>
-                <div class="col-md-6 d-flex align-items-center">
-                  <div class="column pl-4">
-                      <h2 class="font-weight-bold">Arcade Builder</h2><br />
-                      <p>Build your own games arcade from the ground up!</p>
-                        <p class="mb-0">
-
-                        
-
-                        <ul style="color: rgb(93, 93, 93);">
-
-                          <li>Build over 25 items</li>
-                          <li>Research new unlockables</li>
-                          <li>Unique events for guests</li>
-                          <li>Manage the power of your arcade</li>
-                          <li>Hundreds of customers running around</li>
-                          <li>Cute little ponies from claw machines</li>
-
-                        </ul>
-                        </p>
-                        
-                        <p class="mb-0">
-                          <a href="arcade-builder.html" class=" btn btn-primary">Play Now!</a>
-                        </p>
-                        <p></p>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
-
-            <div class="carousel-item">
-              <div class="row no-gutters">
-                <div class="col-md-6">
-                  <img
-                    class="d-block w-90 float-right"
-                    src="img/500x500-ac.png"
-                    alt="Second slide"
-                  />
-                </div>
-                <div class="col-md-6 d-flex align-items-center">
-                  <div class="column pl-4">
-                    <h2 class="font-weight-bold">Astro Colonist</h2><br />
-                      <p>Take control of the solar systems planets!</p>
-                        <p class="mb-0">
-
-                        <ul style="color: rgb(93, 93, 93);">
-
-                          <li>Colonize new planets</li>
-                          <li>Launch satellites and space stations</li>
-                          <li>Build miners for much needed resources</li>
-                          <li>Progress through research unlocks</li>
-                          <li>Face alien threats</li>
-                          <li>Avatars to help guide you, trade and fight</li>
-
-                        </ul>
-                        </p>
-                        
-                        <p class="mb-0">
-                          <a href="astro-colonist.html" class=" btn btn-primary">Play Now!</a>
-                        </p>
-                        <p></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <a
-            class="carousel-control-prev"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="prev"
-            style="max-height: 500px;"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#carouselExampleIndicators"
-            role="button"
-            data-slide="next"
-            style="max-height: 500px;"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-        <ol class="carousel-indicators">
-          <li
-            data-target="#carouselExampleIndicators"
-            data-slide-to="0"
-            class="active"
-          ></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-          <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-        </ol>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="license-to-clone.html">Games</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                target="_blank"
+                href="https://discord.gg/CmSFawGNeU"
+                >Discord</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html#contact">Contact</a>
+            </li>
+          </ul>
         </div>
       </div>
+    </nav>
 
-     
-      
-    </div>
-    <a
-    id="toggleSliderBtn"
-    class="btn"
-    href="#"
-    style="
-      color: white;
-      position: absolute;
-      top: 0px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index:50;
-    "
-  >
-    MORE GAMES
-  </a>
-    <div id="header-bg"></div>
-
-
-    <div id="page-wrapper" class="d-flex flex-column h-100 min-vh-100">
-
-      <div class="d-none d-sm-block">
-            <div class="container-fluid" style="min-height:100px;">
-              <div class="row pt-2 pb-2" id="top-header">
-                <div class="container col-lg-10 col-md-12 col-12" style="max-width:1322px">
-                  <a class="navbar-brand" href="index.html">
-                    <b class="black-and-white-picture-regular" style="color: rgb(215, 17, 17);">Jam</b> <b class="black-and-white-picture-regular" style="color: white;">Donut</b>
-                    <i style="position:absolute; margin-left: -60px;margin-top: 50px;font-size: 12px;color: rgb(212, 212, 212);"">games.com</i>
-                  </a>
-                </div>
-              </div>
-            </div>
-      </div>
-      <div class="d-block d-sm-none">
-        <div class="container-fluid" style="min-height:100px;">
-          <div class="row pt-2 pb-2" id="top-header">
-            <div class="container col-lg-10 col-md-12 col-12" style="height:70px;">
-              <a class="navbar-brand" href="index.html">
-                <b class="black-and-white-picture-regular" style="font-size: 30px;color: rgb(215, 17, 17);">Jam</b> 
-                <b class="black-and-white-picture-regular" style="font-size: 30px;color: white;">Donut</b>
-                <i style="position:absolute; margin-left: -90px;margin-top: 25px;font-size: 15px;color: rgb(212, 212, 212);"">games.com</i>
-              </a>
-            </div>
-          </div>
-        </div>
-  </div>
-            
-  
-
-      <div
-        class="justify-content-center bg-blue flex-grow-1"
-        id="content-wrapper"
-      >
-      
-        <div id="content-holder" class="container pt-2 col-lg-10 col-md-12 col-12 h-100 min-vh-100" style="max-width:1322px">
-          
-          
-          <div class="d-none d-sm-block" style="position:absolute;right:15px;top:-100px">
-            <a id="join_discord" href="https://discord.gg/CmSFawGNeU" target="_blank" title="Join the discord"><img class="float-right" height="90px" src="img/disco.png"></a>
-          </div>
-
-          <div class="explainer p-4 min-vh-100">
-            <div id="page-wrapper" class="d-flex flex-column min-vh-100">
-
-              
-              
-              <div class="comp-whole">
-                <h1>Login</h1>
+    <h1>Login</h1>
     <div id="firebaseui-auth-container"></div>
 
 <link
@@ -727,65 +265,37 @@ a:visited {
   ui.start("#firebaseui-auth-container", uiConfig);
 </script>
 
-              </div>
 
-            </div>
+    <!-- Footer Section -->
+    <section class="footer-section offset-color-1">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3">
+            <h4>Links</h4>
+            <ul>
+              <li><a href="">Home</a></li>
+              <li><a href="">About</a></li>
+              <li><a href="">Games</a></li>
+              <li><a href="">Discord</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+          </div>
+          <div class="col-md-5">
+            <h4>Latest news</h4>
+            <p>We're looking for playtesters! If want to apply please <a href="https://discord.gg/CmSFawGNeU">click here!</a> and message mod!</p>
             
+          </div>
+          <div class="col-md-4">
+            <h4>Get in touch!</h4>
+            <p>
+              Are you an influencer? A writer? Contact us for a quick chat about
+              anything!
+            </p>
+            <p>contact [at] jamdonutgames.com</p>
           </div>
         </div>
       </div>
-      <footer class="text-center">
-        <div class="">
-          <a href="https://discord.gg/CmSFawGNeU" target="_blank" title="Join the discord"><img height="100px" src="img/disco.png"></a>
-        </div>
-        <div class="container">
-          <p>
-            Copyright jamdonutgames.com 2024 - Jam Donut Games trading name of
-            Green Room Software Ltd. Registered United Kingdom
-          </p>
-          <p>The Game Development home of Adam Dougherty</p>
-          <p>
-            <a href="about.html">About</a> -
-            <a href="data-policy.html">Data Policy</a>
-          </p>
-        </div>
-      </footer>
-    </div>
-
-    
-    
-
-    <script>
-      (() => {
-        console.log("rUNO");
-        function bindClick(name) {
-          document.getElementById(name).addEventListener("click", function () {
-            var sliderSection = document.getElementById("sliderSection");
-            console.log("Cliko", sliderSection.style.display);
-
-            if (
-              !sliderSection.style.display ||
-              sliderSection.style.display === "none"
-            ) {
-              sliderSection.style.display = "block";
-            } else {
-              sliderSection.style.display = "none";
-            }
-          });
-        }
-
-        bindClick("toggleSliderBtn");
-        bindClick("toggleSliderBtn2");
-      })();
-    </script>
-   
-   
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-0K8J84CPV7"
-    ></script>
-    
-    
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
