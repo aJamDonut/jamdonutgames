@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gravity Planets — One‑Page Canvas App</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+          Cantarell, Noto Sans, sans-serif;
+      }
+      body {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background: canvas;
+        color: CanvasText;
+      }
+      header {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        padding: 10px 12px;
+        border-bottom: 1px solid
+          color-mix(in oklab, CanvasText 15%, transparent);
+      }
+      header h1 {
+        font-size: 16px;
+        font-weight: 600;
+        margin: 0 8px 0 0;
+        opacity: 0.8;
+      }
+      button {
+        appearance: none;
+        border: 0;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        background: color-mix(in oklab, CanvasText 12%, transparent);
+        color: inherit;
+      }
+      button:hover {
+        background: color-mix(in oklab, CanvasText 18%, transparent);
+      }
+      button[aria-pressed="true"] {
+        outline: 2px solid color-mix(in oklab, CanvasText 40%, transparent);
+        background: color-mix(in oklab, CanvasText 22%, transparent);
+      }
+      .group {
+        display: inline-flex;
+        gap: 6px;
+        background: color-mix(in oklab, CanvasText 6%, transparent);
+        padding: 4px;
+        border-radius: 12px;
+      }
+      #info {
+        margin-left: auto;
+        font-size: 13px;
+        opacity: 0.8;
+      }
+      canvas {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: radial-gradient(
+            circle at 50% 30%,
+            color-mix(in oklab, CanvasText 7%, transparent),
+            transparent 60%
+          ),
+          linear-gradient(
+            180deg,
+            color-mix(in oklab, CanvasText 6%, transparent),
+            transparent 30%
+          );
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Gravity Planets</h1>
+      <button id="toggle">Play</button>
+      <button id="slower">-</button>
+      <button id="faster">+</button>
+      <button
+        id="toggleBounce"
+        aria-pressed="false"
+        title="Toggle edge bouncing"
+      >
+        Bounce
+      </button>
+      <div class="group" role="group" aria-label="Next body type">
+        <button
+          id="modePlanet"
+          aria-pressed="true"
+          title="Next placed body will be a planet with modest mass"
+        >
+          Planet
+        </button>
+        <button
+          id="modeSun"
+          aria-pressed="false"
+          title="Next placed body will be a super‑massive sun"
+        >
+          Sun
+        </button>
+        <button
+          id="modeBlackhole"
+          aria-pressed="false"
+          title="Next placed body will be a super‑massive black hole (very small radius)"
+        >
+          Blackhole
+        </button>
+      </div>
+      <div id="info">Paused • Click canvas to add bodies • Next: Planet</div>
+    </header>
+    <canvas id="scene"></canvas>
+
+    <script>
+      (function () {
+        const canvas = document.getElementById("scene");
+        const ctx = canvas.getContext("2d");
+        const toggleBtn = document.getElementById("toggle");
+        const slowerBtn = document.getElementById("slower");
+        const fasterBtn = document.getElementById("faster");
+        const toggleBounceBtn = document.getElementById("toggleBounce");
+        const modePlanetBtn = document.getElementById("modePlanet");
+        const modeSunBtn = document.getElementById("modeSun");
+        const modeBlackholeBtn = document.getElementById("modeBlackhole");
+        const info = document.getElementById("info");
+
+        // HiDPI resize
+        function resize() {
+          const dpr = Math.max(1, window.devicePixelRatio || 1);
+          const rect = canvas.getBoundingClientRect();
+          canvas.width = Math.round(rect.width * dpr);
+          canvas.height = Math.round(rect.height * dpr);
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // draw in CSS pixels
+        }
+        addEventListener("resize", resize, { passive: true });
+        resize();
+
+        const bodies = [];
+
+        // Physics constants
+        const G = 1000; // Gravitational constant (tuned for screen units)
+        const SOFTEN = 5; // Softening length to avoid singularities
+        const MAX_ACC = 50; // Cap acceleration for stability
+        let running = false;
+
+        let timeScale = 10; // simulation speed factor
+        let edgeBounceEnabled = false;
+
+        // Camera/zoom state
+        let camScale = 1;
+        const MIN_SCALE = 1e-6; // "as much as they want"
+        const MAX_SCALE = 1e6;
+        let camX = canvas.clientWidth / 2; // world coords at center of view
+        let camY = canvas.clientHeight / 2;
+
+        function viewCenterX() {
+          return canvas.clientWidth / 2;
+        }
+        function viewCenterY() {
+          return canvas.clientHeight / 2;
+        }
+        function screenToWorld(sx, sy) {
+          const vcx = viewCenterX();
+          const vcy = viewCenterY();
+          return {
+            x: (sx - vcx) / camScale + camX,
+            y: (sy - vcy) / camScale + camY,
+          };
+        }
+        function applyCameraTransform() {
+          ctx.translate(viewCenterX(), viewCenterY());
+          ctx.scale(camScale, camScale);
+          ctx.translate(-camX, -camY);
+        }
+
+        // Right-click drag panning
+        let isPanning = false;
+        let panStartSX = 0,
+          panStartSY = 0,
+          panStartCamX = 0,
+          panStartCamY = 0;
+        canvas.addEventListener("contextmenu", (e) => {
+          // prevent the default context menu so RMB can be used to pan
+          e.preventDefault();
+        });
+        canvas.addEventListener("mousedown", (e) => {
+          if (e.button !== 2) return; // right mouse button only
+          const rect = canvas.getBoundingClientRect();
+          panStartSX = e.clientX - rect.left;
+          panStartSY = e.clientY - rect.top;
+          panStartCamX = camX;
+          panStartCamY = camY;
+          isPanning = true;
+          canvas.style.cursor = "grabbing";
+        });
+        window.addEventListener("mousemove", (e) => {
+          if (!isPanning) return;
+          const rect = canvas.getBoundingClientRect();
+          const sx = e.clientX - rect.left;
+          const sy = e.clientY - rect.top;
+          const dx = sx - panStartSX;
+          const dy = sy - panStartSY;
+          // Move content with the cursor: decrease cam center by screen delta scaled to world units
+          camX = panStartCamX - dx / camScale;
+          camY = panStartCamY - dy / camScale;
+          draw();
+        });
+        window.addEventListener("mouseup", (e) => {
+          if (e.button !== 2) return;
+          isPanning = false;
+          canvas.style.cursor = "default";
+        });
+
+        function rand(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+        function randColor() {
+          const h = Math.floor(rand(0, 360));
+          const s = Math.floor(rand(60, 80));
+          const l = Math.floor(rand(55, 70));
+          return `hsl(${h} ${s}% ${l}%)`;
+        }
+
+        function massToRadius(m) {
+          // Use cube root scaling so super‑massive suns don't fill the screen
+          const base = 6;
+          return Math.max(2, base * Math.cbrt(m));
+        }
+
+        function blackholeRadius(m) {
+          // Black holes should appear small relative to their mass
+          return massToRadius(m) * 0.12;
+        }
+
+        // Placement mode: 'planet' or 'sun'
+        /** @type {'planet'|'sun'|'blackhole'} */
+        let placeMode = "planet";
+        function updateModeUI() {
+          modePlanetBtn.setAttribute(
+            "aria-pressed",
+            String(placeMode === "planet")
+          );
+          modeSunBtn.setAttribute("aria-pressed", String(placeMode === "sun"));
+          modeBlackholeBtn.setAttribute(
+            "aria-pressed",
+            String(placeMode === "blackhole")
+          );
+        }
+        modePlanetBtn.addEventListener("click", () => {
+          placeMode = "planet";
+          updateModeUI();
+          updateInfo();
+        });
+        modeSunBtn.addEventListener("click", () => {
+          placeMode = "sun";
+          updateModeUI();
+          updateInfo();
+        });
+        modeBlackholeBtn.addEventListener("click", () => {
+          placeMode = "blackhole";
+          updateModeUI();
+          updateInfo();
+        });
+
+        canvas.addEventListener("click", (e) => {
+          if (e.button && e.button !== 0) return; // ignore non-left clicks
+          // if (running) return;
+          const rect = canvas.getBoundingClientRect();
+          const sx = e.clientX - rect.left;
+          const sy = e.clientY - rect.top;
+          const { x, y } = screenToWorld(sx, sy);
+          const isSun = placeMode !== "planet";
+          let m;
+          if (placeMode === "planet") m = rand(20, 100);
+          else if (placeMode === "sun") m = rand(2000, 118000);
+          /* blackhole */ else m = rand(50000, 250000);
+
+          // Base body
+          const body = /** @type {Body} */ ({
+            x,
+            y,
+            vx: 0,
+            vy: 0,
+            ax: 0,
+            ay: 0,
+            m,
+            r: placeMode === "blackhole" ? blackholeRadius(m) : massToRadius(m),
+            color:
+              placeMode === "blackhole"
+                ? "#111"
+                : isSun
+                ? "hsl(50 90% 60%)"
+                : randColor(),
+            isSun,
+            isBlackhole: placeMode === "blackhole",
+          });
+
+          // Give planets an initial tangential velocity (eastward) relative to nearest sun
+
+          let nearestSun = null;
+          let bestD2 = Infinity;
+          for (let i = 0; i < bodies.length; i++) {
+            const b = bodies[i];
+            if (!b.isSun && !b.isBlackhole) continue;
+            const dx = body.x - b.x;
+            const dy = body.y - b.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < bestD2) {
+              bestD2 = d2;
+              nearestSun = b;
+            }
+          }
+          if (!nearestSun) {
+            for (let i = 0; i < bodies.length; i++) {
+              const b = bodies[i];
+              const dx = body.x - b.x;
+              const dy = body.y - b.y;
+              const d2 = dx * dx + dy * dy;
+              if (d2 < bestD2) {
+                bestD2 = d2;
+                nearestSun = b;
+              }
+            }
+          }
+          if (nearestSun && bestD2 > 1) {
+            const dx = body.x - nearestSun.x;
+            const dy = body.y - nearestSun.y;
+            const r = Math.sqrt(bestD2);
+            // circular orbit speed v = sqrt(G*M/r)
+            const v = Math.sqrt((G/r * nearestSun.m) / Math.max(r, 1));
+            // two perpendicular unit vectors
+            const tx1 = -dy / r,
+              ty1 = dx / r; // 90° CCW from radial
+            const tx2 = dy / r,
+              ty2 = -dx / r; // 90° CW from radial
+            // Prefer the one with eastward (positive) x velocity
+            const vx1 = tx1 * v,
+              vx2 = tx2 * v;
+            if (vx1 >= vx2 && vx1 >= 0) {
+              body.vx = vx1;
+              body.vy = ty1 * v;
+            } else if (vx2 >= 0) {
+              body.vx = vx2;
+              body.vy = ty2 * v;
+            } else {
+              // if both are westward, pick the less westward and add a nudge east
+              if (vx1 > vx2) {
+                body.vx = vx1 + v * 0.25;
+                body.vy = ty1 * v;
+              } else {
+                body.vx = vx2 + v * 0.25;
+                body.vy = ty2 * v;
+              }
+            }
+          } else {
+            // No sun yet: give a gentle push to the east
+            body.vx = rand(1, 1);
+            body.vy = 0;
+          }
+
+          bodies.push(body);
+          updateInfo();
+          draw();
+        });
+
+        // Wheel to zoom: zoom around cursor, prevent page scroll
+        canvas.addEventListener(
+          "wheel",
+          (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const sx = e.clientX - rect.left;
+            const sy = e.clientY - rect.top;
+            const before = screenToWorld(sx, sy);
+            const zoom = Math.exp(-e.deltaY * 0.001);
+            camScale = Math.min(
+              MAX_SCALE,
+              Math.max(MIN_SCALE, camScale * zoom)
+            );
+            // keep the world point under the cursor fixed on screen
+            const vcx = viewCenterX();
+            const vcy = viewCenterY();
+            camX = before.x - (sx - vcx) / camScale;
+            camY = before.y - (sy - vcy) / camScale;
+            draw();
+          },
+          { passive: false }
+        );
+
+        toggleBtn.addEventListener("click", () => {
+          running = !running;
+          toggleBtn.textContent = running ? "Pause" : "Play";
+          updateInfo();
+          if (running) loop();
+        });
+
+        slowerBtn.addEventListener("click", () => {
+          timeScale = Math.max(0.1, timeScale - 0.1);
+          updateInfo();
+        });
+
+        fasterBtn.addEventListener("click", () => {
+          timeScale = timeScale + 0.1;
+          updateInfo();
+        });
+
+        toggleBounceBtn.addEventListener("click", () => {
+          edgeBounceEnabled = !edgeBounceEnabled;
+          toggleBounceBtn.setAttribute(
+            "aria-pressed",
+            String(edgeBounceEnabled)
+          );
+          updateInfo();
+        });
+
+        function updateInfo() {
+          info.textContent =
+            (running ? `Playing` : `Paused`) +
+            ` • ${bodies.length} body${
+              bodies.length === 1 ? "" : "ies"
+            } • Speed: ${timeScale.toFixed(1)}x` +
+            ` • Bounce: ${edgeBounceEnabled ? "On" : "Off"}` +
+            ` • Next: ${
+              placeMode === "sun"
+                ? "Sun"
+                : placeMode === "blackhole"
+                ? "Blackhole"
+                : "Planet"
+            }` +
+            (running ? "" : " • Click canvas to add more");
+        }
+
+        function computeAccelerations() {
+          for (let i = 0; i < bodies.length; i++) {
+            bodies[i].ax = 0;
+            bodies[i].ay = 0;
+          }
+          for (let i = 0; i < bodies.length; i++) {
+            const bi = bodies[i];
+            for (let j = i + 1; j < bodies.length; j++) {
+              const bj = bodies[j];
+              const dx = bj.x - bi.x;
+              const dy = bj.y - bi.y;
+              const dist2 = dx * dx + dy * dy;
+              const invDist = 1 / Math.sqrt(dist2);
+              const invDist3 = invDist * invDist * invDist;
+              let f = G * invDist3;
+              const ax = dx * f;
+              const ay = dy * f;
+              bi.ax += ax * bj.m;
+              bi.ay += ay * bj.m;
+              bj.ax -= ax * bi.m;
+              bj.ay -= ay * bi.m;
+            }
+          }
+          for (let i = 0; i < bodies.length; i++) {
+            const b = bodies[i];
+            const a = Math.hypot(b.ax, b.ay);
+            if (a > MAX_ACC) {
+              const s = MAX_ACC / a;
+              b.ax *= s;
+              b.ay *= s;
+            }
+          }
+        }
+
+        function handleCollisions() {
+          if (bodies.length < 2) return;
+
+          // Helper to fragment a body into k pieces
+          function fragmentBody(b) {
+            const k = 1 + Math.floor(Math.random() * 3); // 5..10
+            const pieceMass = b.m / k;
+            const pieces = [];
+            for (let i = 0; i < k; i++) {
+              const ang = Math.random() * Math.PI * 2;
+              const dist = b.r * (0.25 + Math.random() * 0.5);
+              const ox = Math.cos(ang) * dist;
+              const oy = Math.sin(ang) * dist;
+              const speed = 0.1 + Math.random() * 0.1;
+              const vx = b.vx + Math.cos(ang) * speed;
+              const vy = b.vy + Math.sin(ang) * speed;
+              pieces.push({
+                x: b.x + ox,
+                y: b.y + oy,
+                vx,
+                vy,
+                ax: 0,
+                ay: 0,
+                m: pieceMass,
+                r: massToRadius(pieceMass),
+                color: b.color,
+                isSun: false,
+              });
+            }
+            return pieces;
+          }
+
+          const toRemove = new Set();
+          const fragments = [];
+          const mergeZone = 5;
+          for (let i = 0; i < bodies.length; i++) {
+            if (toRemove.has(i)) continue;
+            const bi = bodies[i];
+            for (let j = i + 1; j < bodies.length; j++) {
+              if (toRemove.has(j)) continue;
+              const bj = bodies[j];
+              const dx = bj.x - bi.x;
+              const dy = bj.y - bi.y;
+              let rsum = mergeZone + mergeZone;
+              if (!bj.isSun && !bi.isSun) {
+                rsum = bj.r / 2 + bi.r / 2;
+              }
+              if (dx * dx + dy * dy > rsum * rsum) continue; // no collision
+
+              // Collision: decide consume vs fragment
+              const iIsLarger = bi.m >= bj.m || i.isBlackhole;
+
+              const big = iIsLarger ? bi : bj;
+              const small = iIsLarger ? bj : bi;
+              const bigIdx = iIsLarger ? i : j;
+              const smallIdx = iIsLarger ? j : i;
+
+              if (big.m >= 1.1 * small.m) {
+                // Consume: conserve momentum, add mass, update radius and sun flag
+                const newM = big.m + small.m + small.m;
+                const newVx = (big.vx * big.m + small.vx * small.m) / newM;
+                const newVy = (big.vy * big.m + small.vy * small.m) / newM;
+                big.m = newM;
+                big.vx = newVx;
+                big.vy = newVy;
+                big.isSun = big.isSun || small.isSun;
+                big.isBlackhole = !!(big.isBlackhole || small.isBlackhole);
+                big.r = big.isBlackhole
+                  ? blackholeRadius(big.m + small.m)
+                  : massToRadius(big.m);
+                toRemove.add(smallIdx);
+              } else {
+                // Fragment both bodies
+                fragments.push(...fragmentBody(bi));
+                fragments.push(...fragmentBody(bj));
+                toRemove.add(i);
+                toRemove.add(j);
+              }
+
+              // Once a collision is handled for these indices in this frame, stop further checks involving them
+              if (toRemove.has(i)) break;
+            }
+          }
+
+          if (toRemove.size > 0 || fragments.length > 0) {
+            const survivors = [];
+            for (let idx = 0; idx < bodies.length; idx++) {
+              if (!toRemove.has(idx)) survivors.push(bodies[idx]);
+            }
+            bodies.length = 0;
+            bodies.push(...survivors, ...fragments);
+          }
+        }
+
+        function biggestBody() {
+          if (bodies.length === 0) return null;
+          let maxi = 0;
+          for (let i = 1; i < bodies.length; i++) {
+            if (bodies[i].m > bodies[maxi].m) maxi = i;
+          }
+          return bodies[maxi] || null;
+        }
+
+        function updateCameraFollow(dt) {
+          if (isPanning) return; // user override while right-click dragging
+          const target = biggestBody();
+          if (!target) return;
+          // Exponential smoothing towards target; tau controls responsiveness
+          const tau = 30; // seconds
+          const alpha = 1 - Math.exp(-Math.max(0, dt) / tau);
+          camX += (target.x - camX) * alpha;
+          camY += (target.y - camY) * alpha;
+        }
+
+        let lastT = 0;
+        function loop(ts) {
+          if (!running) return;
+          if (!lastT) lastT = ts;
+          let dt = Math.min(0.033, (ts - lastT) / 1000) || 0.016;
+          lastT = ts;
+          dt *= timeScale;
+
+          computeAccelerations();
+          for (let i = 0; i < bodies.length; i++) {
+            const b = bodies[i];
+            b.vx += b.ax * dt;
+            b.vy += b.ay * dt;
+            b.x += b.vx * dt;
+            b.y += b.vy * dt;
+            if (edgeBounceEnabled) {
+              const r = b.r;
+              if (b.x < r) {
+                b.x = r;
+                b.vx = Math.abs(b.vx);
+              }
+              if (b.x > canvas.clientWidth - r) {
+                b.x = canvas.clientWidth - r;
+                b.vx = -Math.abs(b.vx);
+              }
+              if (b.y < r) {
+                b.y = r;
+                b.vy = Math.abs(b.vy);
+              }
+              if (b.y > canvas.clientHeight - r) {
+                b.y = canvas.clientHeight - r;
+                b.vy = -Math.abs(b.vy);
+              }
+            }
+          }
+
+          // Resolve collisions after integration
+          handleCollisions();
+
+          // Smoothly follow the biggest body when not panning
+          updateCameraFollow(dt);
+
+          draw();
+          requestAnimationFrame(loop);
+        }
+
+        function draw() {
+          ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+          if (running) {
+            ctx.globalAlpha = 0.08;
+            ctx.fillStyle =
+              getComputedStyle(canvas).backgroundColor || "transparent";
+            ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+            ctx.globalAlpha = 1;
+          }
+          ctx.save();
+          applyCameraTransform();
+          for (let i = 0; i < bodies.length; i++) {
+            const b = bodies[i];
+            ctx.beginPath();
+            ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+            ctx.fillStyle = b.color;
+            ctx.fill();
+          }
+          ctx.restore();
+          ctx.save();
+          ctx.font =
+            "12px system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif";
+          ctx.textBaseline = "top";
+          ctx.globalAlpha = 0.8;
+          ctx.fillStyle = "CanvasText";
+          ctx.fillText(
+            `${bodies.length} bodies • Speed ${timeScale.toFixed(
+              1
+            )}x • Zoom ${camScale.toFixed(3)}x • Bounce ${
+              edgeBounceEnabled ? "On" : "Off"
+            } • Next: ${placeMode}`,
+            10,
+            10
+          );
+          ctx.restore();
+        }
+
+        updateInfo();
+        draw();
+      })();
+    </script>
+  </body>
+</html>
