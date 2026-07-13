@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Meeting Waste Calculator</title>
+<style>
+  :root{
+    --bg:#0b0d10; --panel:#12161b; --panel2:#181d23; --text:#f5f7fa; --muted:#9ba7b4;
+    --line:#28313a; --hot:#ff5a4f; --hot2:#ff8a57; --green:#6ee7a2; --amber:#ffd166;
+    --shadow:0 24px 70px rgba(0,0,0,.42);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+    radial-gradient(circle at 8% 0%,rgba(255,90,79,.10),transparent 28rem),
+    radial-gradient(circle at 100% 30%,rgba(255,138,87,.07),transparent 34rem),
+    var(--bg);color:var(--text);font:16px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+  button,input,select{font:inherit}
+  .wrap{width:min(1220px,calc(100% - 36px));margin:auto}
+  header{padding:28px 0 12px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .brand{font-weight:900;letter-spacing:-.04em;font-size:1.1rem}
+  .brand span{color:var(--hot)}
+  .pill{border:1px solid var(--line);color:var(--muted);padding:8px 12px;border-radius:999px;font-size:.82rem}
+  .hero{padding:64px 0 34px;display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:end}
+  h1{font-size:clamp(3rem,7.4vw,7.2rem);line-height:.84;letter-spacing:-.075em;margin:0;max-width:900px}
+  h1 em{font-style:normal;color:var(--hot)}
+  .lede{color:var(--muted);font-size:1.1rem;max-width:560px;margin:24px 0 0}
+  .truth{justify-self:end;max-width:390px;border-left:2px solid var(--hot);padding-left:18px;color:#d8dde3}
+  .truth strong{display:block;font-size:1.3rem;margin-bottom:5px}
+  main{padding:18px 0 70px}
+  .grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:22px}
+  .card{background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.008)),var(--panel);
+        border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}
+  .inputs{padding:24px}
+  .section-label{font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+  .field{display:grid;grid-template-columns:1fr 1.25fr;gap:14px;align-items:center;margin:10px 0}
+  label{font-weight:700;color:#dce2e8}
+  .control,.select-wrap{position:relative}
+  input,select{width:100%;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:14px;padding:13px 14px;outline:none}
+  input:focus,select:focus{border-color:var(--hot)}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .range-row{margin:19px 0 4px}
+  .range-head{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:8px}
+  .range-head strong{font-size:.95rem}.range-head span{color:var(--muted);font-size:.86rem}
+  input[type=range]{appearance:none;height:8px;padding:0;background:#2a3138;border:0;border-radius:999px}
+  input[type=range]::-webkit-slider-thumb{appearance:none;width:21px;height:21px;border-radius:50%;background:var(--text);border:4px solid var(--hot);cursor:pointer}
+  .calc{margin-top:22px;width:100%;border:0;border-radius:14px;background:var(--hot);color:white;font-weight:900;padding:15px 18px;cursor:pointer;box-shadow:0 12px 30px rgba(255,90,79,.18)}
+  .calc:hover{filter:brightness(1.07)}
+  .results{padding:24px;display:flex;flex-direction:column}
+  .headline-result{background:#0f1216;border:1px solid var(--line);border-radius:20px;padding:22px}
+  .headline-result .kicker{color:var(--muted);font-size:.82rem;text-transform:uppercase;letter-spacing:.13em;font-weight:800}
+  .big{font-size:clamp(2.6rem,5.3vw,5.7rem);line-height:.95;letter-spacing:-.06em;font-weight:950;margin:8px 0 10px}
+  .big span{color:var(--hot)}
+  .sub{color:var(--muted)}
+  .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .metric{background:var(--panel2);border:1px solid var(--line);border-radius:17px;padding:16px}
+  .metric b{display:block;font-size:1.5rem;letter-spacing:-.04em;margin-top:4px}
+  .metric small{color:var(--muted)}
+  .reality{margin-top:12px;border:1px solid var(--line);border-radius:20px;padding:20px}
+  .bar{height:13px;background:#282f36;border-radius:999px;overflow:hidden;margin:14px 0 8px}
+  .bar > i{display:block;height:100%;width:42%;background:linear-gradient(90deg,var(--amber),var(--hot));border-radius:inherit}
+  .split{display:flex;justify-content:space-between;color:var(--muted);font-size:.86rem}
+  .callout{margin-top:12px;background:rgba(255,90,79,.08);border:1px solid rgba(255,90,79,.25);border-radius:18px;padding:17px;color:#ffd9d5}
+  .method{margin-top:22px;padding:22px 0 0;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}
+  .method strong{color:var(--text)}
+  footer{padding:0 0 42px;color:#6f7b87;font-size:.82rem}
+  @media (max-width:900px){.hero,.grid{grid-template-columns:1fr}.truth{justify-self:start}.metrics{grid-template-columns:1fr}.hero{padding-top:42px}h1{font-size:clamp(3rem,16vw,6rem)}}
+  @media (max-width:560px){.wrap{width:min(100% - 20px,1220px)}.field{grid-template-columns:1fr;gap:7px}.hero{gap:28px}.inputs,.results{padding:16px}.duo{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">MEETING<span>WASTE</span></div>
+    <div class="pill">A blunt cost calculator</div>
+  </header>
+
+  <section class="hero">
+    <div>
+      <h1>How much time are meetings <em>actually wasting?</em></h1>
+      <p class="lede">Convert calendar habits into money, person-hours, and working days. No productivity theatre. Just the arithmetic.</p>
+    </div>
+    <div class="truth">
+      <strong>Your 60-minute meeting is not one hour.</strong>
+      It is one hour multiplied by every person in the room, plus the drag caused by interruptions and low-value attendance.
+    </div>
+  </section>
+
+  <main>
+    <div class="grid">
+      <section class="card inputs">
+        <div class="section-label">Meeting inputs</div>
+
+        <div class="field"><label for="attendees">People in the room</label><input id="attendees" type="number" min="1" value="15"></div>
+        <div class="field">
+          <label>Average annual salary</label>
+          <div class="duo">
+            <select id="currency">
+              <option value="USD">USD — $</option><option value="GBP" selected>GBP — £</option>
+              <option value="EUR">EUR — €</option><option value="CAD">CAD — C$</option>
+              <option value="AUD">AUD — A$</option><option value="JPY">JPY — ¥</option>
+              <option value="INR">INR — ₹</option><option value="CHF">CHF — CHF</option>
+              <option value="SEK">SEK — kr</option><option value="NOK">NOK — kr</option>
+              <option value="DKK">DKK — kr</option><option value="NZD">NZD — NZ$</option>
+              <option value="SGD">SGD — S$</option><option value="ZAR">ZAR — R</option>
+              <option value="BRL">BRL — R$</option>
+            </select>
+            <input id="salary" type="number" min="0" value="40000">
+          </div>
+        </div>
+        <div class="field"><label for="length">Meeting length (minutes)</label><input id="length" type="number" min="1" value="90"></div>
+        <div class="field"><label for="frequency">How often</label>
+          <select id="frequency"><option value="260">Every workday</option><option value="52" selected>Weekly</option><option value="26">Every 2 weeks</option><option value="12">Monthly</option><option value="4">Quarterly</option><option value="1">Yearly</option></select>
+        </div>
+
+        <div class="range-row">
+          <div class="range-head"><strong>Interruption cost</strong><span id="interruptLabel">15 min recovery</span></div>
+          <input id="interruptions" type="range" min="0" max="45" value="15">
+        </div>
+        <div class="range-row">
+          <div class="range-head"><strong>Useful meeting time</strong><span id="usefulLabel">70% productive</span></div>
+          <input id="useful" type="range" min="0" max="100" value="70">
+        </div>
+        <div class="range-row">
+          <div class="range-head"><strong>People who genuinely need to attend</strong><span id="neededLabel">70%</span></div>
+          <input id="needed" type="range" min="10" max="100" value="70">
+        </div>
+
+        <button class="calc" id="calculate">Calculate the waste</button>
+      </section>
+
+      <section class="card results">
+        <div class="section-label">The bill</div>
+        <div class="headline-result">
+          <div class="kicker">Estimated annual meeting waste</div>
+          <div class="big" id="annualWaste">£7,122</div>
+          <div class="sub" id="annualWasteSub">from one recurring meeting</div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric"><small>Cost every time</small><b id="meetingCost">£433</b></div>
+          <div class="metric"><small>Person-hours consumed / year</small><b id="hoursConsumed">1,170h</b></div>
+          <div class="metric"><small>Working days wasted / year</small><b id="daysWasted">23.8</b></div>
+        </div>
+
+        <div class="reality">
+          <div class="range-head"><strong>Useful work vs. waste</strong><span id="wastePct">41% wasted</span></div>
+          <div class="bar"><i id="wasteBar"></i></div>
+          <div class="split"><span>Useful</span><span>Waste</span></div>
+        </div>
+
+        <div class="callout" id="callout">
+          This meeting burns the equivalent of 24 full working days a year on time that does not create useful output.
+        </div>
+
+        <div class="method">
+          <strong>What counts as waste?</strong> Non-useful meeting time, attendance by people who do not need to be there, and post-meeting context recovery. Salary cost is estimated from annual salary ÷ 1,920 working hours. This is deliberately a direct-cost model: employer taxes, benefits, overhead, and opportunity cost are not included.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>MeetingWaste is a local calculator. The values you enter are processed in your browser and are not sent anywhere.</footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const ids = ["attendees","salary","length","frequency","currency","interruptions","useful","needed"];
+ids.forEach(id => $(id).addEventListener("input", calculate));
+$("calculate").addEventListener("click", calculate);
+
+function money(value, currency){
+  try {
+    return new Intl.NumberFormat(undefined,{style:"currency",currency,maximumFractionDigits:0}).format(value);
+  } catch {
+    return `${currency} ${Math.round(value).toLocaleString()}`;
+  }
+}
+function num(id){ return Math.max(0, Number($(id).value) || 0); }
+
+function calculate(){
+  const attendees = Math.max(1,num("attendees"));
+  const salary = num("salary");
+  const minutes = Math.max(1,num("length"));
+  const perYear = num("frequency");
+  const recovery = num("interruptions");
+  const useful = num("useful")/100;
+  const needed = num("needed")/100;
+  const currency = $("currency").value;
+
+  $("interruptLabel").textContent = `${recovery} min recovery`;
+  $("usefulLabel").textContent = `${Math.round(useful*100)}% productive`;
+  $("neededLabel").textContent = `${Math.round(needed*100)}%`;
+
+  const hourly = salary / 1920;
+  const meetingHours = minutes / 60;
+  const meetingCost = attendees * meetingHours * hourly;
+  const annualConsumed = attendees * meetingHours * perYear;
+
+  const nonUseful = 1 - useful;
+  const unnecessaryAttendance = 1 - needed;
+  // Avoid double counting: meeting waste is probability union of non-useful time and unnecessary attendance.
+  const inMeetingWasteRate = 1 - ((1-nonUseful) * (1-unnecessaryAttendance));
+  const inMeetingWasteHours = annualConsumed * inMeetingWasteRate;
+  const recoveryWasteHours = attendees * (recovery/60) * perYear;
+  const annualWasteHours = inMeetingWasteHours + recoveryWasteHours;
+  const annualWasteMoney = annualWasteHours * hourly;
+  const totalAnnualTime = annualConsumed + recoveryWasteHours;
+  const wasteRate = totalAnnualTime ? Math.min(1, annualWasteHours/totalAnnualTime) : 0;
+  const days = annualWasteHours / 8;
+
+  $("annualWaste").innerHTML = `<span>${money(annualWasteMoney,currency)}</span>`;
+  $("annualWasteSub").textContent = `from one recurring ${$("frequency").selectedOptions[0].text.toLowerCase()} meeting`;
+  $("meetingCost").textContent = money(meetingCost,currency);
+  $("hoursConsumed").textContent = `${Math.round(annualConsumed).toLocaleString()}h`;
+  $("daysWasted").textContent = days.toLocaleString(undefined,{maximumFractionDigits:1});
+  $("wastePct").textContent = `${Math.round(wasteRate*100)}% wasted`;
+  $("wasteBar").style.width = `${Math.round(wasteRate*100)}%`;
+
+  const peopleYears = annualWasteHours / 1920;
+  let extra = peopleYears >= .1 ? ` That is ${peopleYears.toLocaleString(undefined,{maximumFractionDigits:2})} of a full-time working year.` : "";
+  $("callout").textContent = `This recurring meeting wastes about ${days.toLocaleString(undefined,{maximumFractionDigits:1})} full 8-hour working days per year and costs ${money(annualWasteMoney,currency)} in salary time.${extra}`;
+}
+calculate();
+</script>
+</body>
+</html>
